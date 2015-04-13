@@ -1,0 +1,90 @@
+<mvc:View
+	controllerName="de.esconderse.view.Master"
+	displayBlock="true"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		id="page"
+		title="{i18n>masterTitle}">
+		<subHeader>
+			<Bar id="searchBar">
+				<contentMiddle>
+					<SearchField
+						id="searchField"
+						showRefreshButton="{device>/isNoTouch}"
+						search="onSearch"
+						tooltip="{i18n>masterSearchTooltip}"
+						width="100%">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+		<content>
+ 		   	<PullToRefresh
+        		id="pullToRefresh"
+	    	    visible="{device>/isTouch}"
+				refresh="doRefresh"/>
+			<List
+				id="mailList"
+				items="{/result}"
+				mode="{device>/listMode}"
+				noDataText="{i18n>masterListNoDataText}"
+				select="onSelect"
+				growing="true"
+				growingScrollToLoad="true">
+				<items>
+					<ObjectListItem
+						type="{device>/listItemType}"
+						press="onSelect"
+						title="{description}"
+						number="{
+							path: 'status'
+						}"
+						numberUnit="USD">
+				        <firstStatus>
+          					<ObjectStatus
+            					text="{path:'status',formatter:'de.esconderse.util.Formatter.status2'}"
+            					state="{
+              						path: 'status',
+              						formatter: '.status'
+								}" />
+						</firstStatus>
+						
+        <secondStatus>
+          <ObjectStatus
+            text="{status}"
+            state="{
+              path: 'status',
+              formatter: '.status'
+            }" />
+        </secondStatus>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button 
+						tooltip="{i18n>masterFooterHomeButtonTooltip}"
+						icon="sap-icon://home" 
+						press="onHome"/>
+				</contentLeft>
+				<contentRight>
+					<Button 
+						tooltip="{i18n>masterFooterUsageButtonTooltip}"
+						icon="sap-icon://bar-chart" 
+						press="onMenuUsage"/>
+					<Button 
+						tooltip="{i18n>masterFooterFilterButtonTooltip}"
+						icon="sap-icon://filter" 
+						press="onMenuFilter"/>
+					<Button
+						tooltip="{i18n>masterFooterAddButtonTooltip}"
+						icon="sap-icon://add"
+						press="onAddProduct" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

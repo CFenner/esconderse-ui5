@@ -1,0 +1,63 @@
+<mvc:View
+	controllerName="de.esconderse.view.Detail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Page
+		showNavButton="{device>/isPhone}"
+		navButtonPress="onNavBack"
+		class="sapUiFioriObjectPage"
+		title="{i18n>detailTitle}">
+		<content>
+			<ObjectHeader
+				title="{description}">
+				<attributes>
+					<ObjectAttribute text="{i18n>detailFromDate} {
+						path: 'ReleaseDate',
+						type: 'sap.ui.model.type.Date'
+						}" />
+					<ObjectAttribute text="{description}" />
+				</attributes>
+				<firstStatus>
+					<ObjectStatus
+						text="{
+							path: 'DiscontinuedDate',
+							formatter: 'de.esconderse.util.Formatter.discontinuedStatusValue'
+						}"
+						state="{
+							path: 'DiscontinuedDate',
+							formatter: 'de.esconderse.util.Formatter.discontinuedStatusState'
+						}" />
+				</firstStatus>
+			</ObjectHeader>
+			<!--
+			<IconTabBar
+				select="onDetailSelect"
+				id="idIconTabBar">
+				<items>
+					<IconTabFilter
+						key="supplier"
+						text="{i18n>iconTabFilterSupplier}"
+						icon="sap-icon://supplier">
+						<content>
+							
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						key="category"
+						text="{i18n>iconTabFilterCategory}"
+						icon="sap-icon://hint">
+						<content>
+							
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>-->
+			
+</content>
+		<footer>
+			<Bar>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

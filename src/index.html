@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+		<title>Esconderse</title>
+		<script id='sap-ui-bootstrap'
+		    src='resources/1.28.2-u/sap-ui-core.js'
+		    data-sap-ui-theme='sap_bluecrystal'
+		    data-sap-ui-libs='sap.m'
+		    data-sap-ui-resourceroots='{"de.esconderse": "./"}'>
+		</script>
+<!--
+		    src='resources/sap-ui-core.js'
+		    src='https://openui5.hana.ondemand.com/resources/sap-ui-core.js'
+        	src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+-->
+        <script>
+            sap.ui.getCore().attachInit(function() {
+                new sap.m.Shell({
+                    app: new sap.ui.core.ComponentContainer({
+                        height : "100%",
+                        name : "de.esconderse"
+                    })
+                }).placeAt("content");
+            });
+        </script>
+	</head>
+	<body class='sapUiBody' id="content" />
+</html>

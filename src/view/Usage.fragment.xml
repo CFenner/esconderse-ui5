@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core">
+  <ResponsivePopover placement="Top" title="Weiterleitungen">
+    <endButton>
+  		<Button icon="sap-icon://email" text="get more"/>
+    </endButton>
+    <content>
+		<ProgressIndicator
+        width="100%"
+        percentValue="{statistic>/max}"
+        displayValue="{path:'statistic>/max'}"
+        showValue="true"
+        state="Success" />
+    </content>
+  </ResponsivePopover>
+</core:FragmentDefinition>

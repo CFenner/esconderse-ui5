@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  	<ActionSheet
+		title="Einträge filtern"
+		placement="Top">
+		<buttons
+		buttons="/buttons">
+			<Button
+				icon="{icon}"
+				text="{text}"
+				press="{press}"/>
+		</buttons>
+	  		<!--
+	  		
+		<buttons>
+	  		<Button icon="sap-icon://connected" text="{i18n>masterFilterAllButtonToolTip}" press="onFilterAll"/>
+	  		<Button icon="sap-icon://connected" text="{i18n>masterFilterActiveButtonToolTip}" press="onFilterActive"/>
+	  		<Button icon="sap-icon://disconnected" text="{i18n>masterFilterInactiveButtonToolTip}" press="onFilterInactive"/>
+		</buttons>
+	  		-->
+	</ActionSheet>
+</core:FragmentDefinition>
