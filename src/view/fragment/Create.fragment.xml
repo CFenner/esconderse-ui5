@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+	controllerName="de.esconderse.view.fragment.Create"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="dialogCreate"
+		title="{i18n>dialogCreate.title}"
+		type="Message" >
+		<Label text="{i18n>dialogCreate.labelName}" labelFor="createName"></Label>
+		<Input
+			id="inputCreate"
+			name="description" />
+		<Label text="{i18n>dialogCreate.labelState}" labelFor="createState"></Label>
+		<endButton>
+			<Button text="{i18n>dialogCreate.btnCreate}" 
+				type="Emphasized" 
+				press="onCreate" />
+		</endButton>
+	    <beginButton>
+			<Button text="{i18n>dialogCreate.btnCancel}" 
+				type="Reject" 
+				press="onCancel" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

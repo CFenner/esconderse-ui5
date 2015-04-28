@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover 
+		title="Weiterleitungen genutzt"
+		placement="Top">
+		<!--
+		
+		showTitle="false"
+		title="{account>/email}"
+		-->
+    	<content>
+			<ProgressIndicator
+       	 		width="15em"
+				showValue="true"
+        		percentValue="{
+        			parts:[
+        				{path: 'account>/permission/max'},
+        				{path:'account>/permission/current'}
+        			], 
+        			formatter: 'de.esconderse.util.Formatter.usagePercent'}"
+				displayValue="{
+					parts:[
+						{path: 'account>/permission/max'},
+						{path:'account>/permission/current'}
+        			], 
+        			formatter: 'de.esconderse.util.Formatter.usageText'}"
+        		state="{
+        			parts:[
+        				{path: 'account>/permission/max'},
+        				{path:'account>/permission/current'}
+        			], 
+        			formatter: 'de.esconderse.util.Formatter.usageState'}"/>
+		</content>
+    <!--	<endButton>
+  			<Button icon="sap-icon://email" text="get more"/>
+    	</endButton>
+	-->
+	</ResponsivePopover>
+</core:FragmentDefinition>
