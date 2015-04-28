@@ -32,7 +32,7 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
 			new sap.ui.model.json.JSONModel(
 				this.useMockData
 				?"model/account.json"
-				:"https://esconderse.de/gateway?account"
+				:"https://esconderse.de/account"
 			)//.setDefaultBindingMode("OneWay")
 			, "account")
 		.setModel(
