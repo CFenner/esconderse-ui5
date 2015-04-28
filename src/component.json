@@ -1,0 +1,50 @@
+{
+        "name" : "Esconderse",
+        "version" : "1.0",
+        "includes" : [],
+        "dependencies" : {
+            "libs" : ["sap.m", "sap.ui.layout"],
+            "components" : []
+    	},
+		"rootView" : "de.esconderse.view.App",
+		"config" : {
+            "resourceBundle" : "i18n/messageBundle.properties",
+            "serviceConfig" : {
+                "name" : "Northwind",
+                "serviceUrl" : "http://services.odata.org/V2/(S(sapuidemotdg))/OData/OData.svc/"
+            }
+        },
+        "routing" : {
+			"config" : {
+				"routerClass" : "de.esconderse.Router",
+				"viewType" : "XML",
+				"viewPath" : "de.esconderse.view",
+				"targetAggregation" : "detailPages",
+				"clearTarget" : false
+			},
+			"routes" : [
+				{
+					"pattern" : "",
+					"name" : "main",
+					"view" : "Master",
+					"targetAggregation" : "masterPages",
+					"targetControl" : "idAppControl",
+					"subroutes" : [
+						{
+							"pattern" : "/forward/{forward}",
+							"name" : "forward",
+							"view" : "Forward"
+						},{
+							"pattern": "create",
+							"name": "create",
+							"view": "New"
+						},{
+							"pattern": "account",
+							"name" : "account",
+							"view" : "Account"
+						}
+					]
+				}
+			]
+		}
+    }
