@@ -1,121 +1,18 @@
-jQuery.sap.require("de.esconderse.view.Formatter");
+jQuery.sap.require("de.esconderse.util.Formatter");
 
 sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
-
-
 	onInit : function() {
 		this.oUpdateFinishedDeferred = jQuery.Deferred();
-
+		// ??
 		this.getView().byId("mailList").attachEventOnce("updateFinished", function() {
 			this.oUpdateFinishedDeferred.resolve();
 		}, this);
 		
-		sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
-	},
-	onRouteMatched : function(evt) {
-		var oList = this.getView().byId("mailList");
-		var sName = evt.getParameter("name");
-		var oArguments = evt.getParameter("arguments");
-
-		// Wait for the list to be loaded once
-		jQuery.when(this.oUpdateFinishedDeferred).then(jQuery.proxy(function() {
-			var aItems;
-
-			// On the empty hash select the first item
-			if (sName === "main") {
-				this.selectDetail();
-			}
-
-			// Try to select the item in the list
-			if (sName === "product") {
-
-				aItems = oList.getItems();
-				for (var i = 0; i < aItems.length; i++) {
-					if (aItems[i].getBindingContext().getPath() === "/" + oArguments.product) {
-						oList.setSelectedItem(aItems[i], true);
-						break;
-					}
-				}	
-			}	
-
-		}, this));
+		var router = sap.ui.core.UIComponent.getRouterFor(this);
+		router.attachRouteMatched(this.onRouteMatched, this);
 	},
 	
-	selectDetail : function() {
-		if (!sap.ui.Device.system.phone) {
-			var oList = this.getView().byId("mailList");
-			var aItems = oList.getItems();
-			if (aItems.length && !oList.getSelectedItem()) {
-				oList.setSelectedItem(aItems[0], true);
-				this.showDetail(aItems[0]);
-			}
-		}
-	},
-	onSearch : function() {
-		// add filter for search
-		var filters = [];
-		var searchString = this.getView().byId("searchField").getValue();
-		if (searchString && searchString.length > 0) {
-			filters = [ new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString) ];
-		}
-
-		// update list binding
-		this.getView().byId("mailList").getBinding("items").filter(filters);
-	},
-	onSelect : function(evt) {
-		// Get the list item, either from the listItem parameter or from the event's
-		// source itself (will depend on the device-dependent mode).
-		this.showDetail(evt.getParameter("listItem") || evt.getSource());
-	},
-	showDetail : function(oItem) {
-		// If we're on a phone, include nav in history; if not, don't.
-		var bReplace = jQuery.device.is.phone ? false : true;
-		sap.ui.core.UIComponent.getRouterFor(this).navTo("detail", {
-			from: "master",
-			forward: oItem.getBindingContext().getPath().split("/")[1]
-		}, bReplace);
-	},
-	onMenuUsage: function(evt){
-		var src = evt.getSource(), 
-			model = new sap.ui.model.json.JSONModel({
-			"max": 32,
-			"current": 16
-		});
-    	model.setDefaultBindingMode("OneWay");
-	    if(!this._popoverStatistic) {
-			this._popoverStatistic = sap.ui.xmlfragment("de.esconderse.view.Usage", this);
-		}
-	    this._popoverStatistic.setModel(model, "usage");
-	    this._popoverStatistic.bindElement("/");
-	    this._popoverStatistic.openBy(src);
-	},
-	onMenuFilter: function(evt){
-		var src = evt.getSource();
-		if(!this._sheetFilter){
-			this._sheetFilter = sap.ui.xmlfragment(
-				"de.esconderse.view.Filter",
-				this
-			);
-			this._sheetFilter.placement = "top";
-			this.getView().addDependent(this._sheetFilter);
-		} 
-		this._sheetFilter.setModel(new sap.ui.model.json.JSONModel(
-	[{
-		"icon": "sap-icon://all",
-		"text": "{i18n>masterFilterAllButtonToolTip}",
-		"press": "onFilterAll"
-	},{
-		"icon": "sap-icon://connected",
-		"text": "{i18n>masterFilterActiveButtonToolTip}",
-		"press": "onFilterActive"
-	},{
-		"icon": "sap-icon://disconnected",
-		"text": "{i18n>masterFilterInactiveButtonToolTip}",
-		"press": "onFilterInactive"
-	}]));
-//		this._sheetFilter.opener = src;
-		this._sheetFilter.openBy(src);
-	},
+	/*
 	onAddProduct : function() {
 		sap.ui.core.UIComponent.getRouterFor(this).myNavToWithoutHash({
 			currentView : this.getView(),
@@ -124,33 +21,157 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 			transition : "slide"
 		});
 	},
+	*/
+	// ---------- navigation
+	selectFirst : function() {
+		if (!sap.ui.Device.system.phone) {
+			var list = this.getView().byId("mailList"),
+				itemList = list.getItems();
+			if (itemList.length && !list.getSelectedItem()) {
+				list.setSelectedItem(itemList[0], true);
+				this.selectForward(itemList[0]);
+			}
+		}
+	},
+	selectForward : function(item) {
+		var path = item.getBindingContext().getPath(), 
+			index = path.split("/")[1],
+			router = sap.ui.core.UIComponent.getRouterFor(this);
+			
+		// If we're on a phone, include nav in history; if not, don't.
+		var bReplace = jQuery.device.is.phone ? false : true;
+		router.navTo("forward", {
+			from: "master",
+			forward: index
+		}, bReplace);
+	},
+	// ---------- list
+	onSearch : function (evt, refreshButtonPressed) {    
+		if(refreshButtonPressed){
+			this.doRefresh(evt);
+		}
+	    // add filter for search
+	    var filters = [];
+	    var query = evt.getSource().getValue();
+	    if (query && query.length > 0) {
+			filters.push(
+	      		new sap.ui.model.Filter(
+	      			"description", 
+	      			sap.ui.model.FilterOperator.Contains, 
+	      			query
+	      		)
+			);
+	    }
+    	// update list binding
+    	var list = this.getView().byId("mailList");
+    	var binding = list.getBinding("items");
+    	binding.filter(filters, "Application");
+	},
+	onForward : function(evt, listItem, listItemArray, isSelected) {
+		var listItem = evt.getParameter("listItem") || evt.getSource(), 
+			isSelected = evt.getParameter("selected");
+		// Get the list item, either from the listItem parameter or from the event's
+		// source itself (will depend on the device-dependent mode).
+		this.selectForward(listItem);
+	},
+	// ---------- footer
 	onHome: function(evt){
 		// If we're on a phone, include nav in history; if not, don't.
 		var bReplace = jQuery.device.is.phone ? false : true;
-		sap.ui.core.UIComponent.getRouterFor(this).navTo("welcome", {
+		sap.ui.core.UIComponent.getRouterFor(this).navTo("account", {
 			from: "master",
 			forward: null
 		}, bReplace);
 	},
-	onFilterAll: function(evt){ this.setFilter(false); },
-	onFilterActive: function(evt){ this.setFilter(true, true); },
+	onLogout: function(evt){
+		
+		window.location = "https://esconderse.de/logout.php";
+	},
+	onMenuUsage: function(evt){
+	    if(!this._usagePopover) {
+			this._usagePopover = sap.ui.xmlfragment("de.esconderse.view.fragment.Usage", this);
+			this.getView().addDependent(this._usagePopover);
+		}
+	    this._usagePopover.openBy(evt.getSource());
+	},
+	onMenuFilter: function(evt){
+		if(!this._filterSheet){
+			this._filterSheet = sap.ui.xmlfragment("de.esconderse.view.fragment.Filter", this);
+			this.getView().addDependent(this._filterSheet);
+		}
+		this._filterSheet.openBy(evt.getSource());
+	},
+	onFilterReset: function(evt){ this.setFilter(false); },
+	onFilterActive: function(evt){ 
+		var src = evt.getSource();
+		
+		//alert(src.getData("data-status"));
+//		evt.getSource().set
+		this.setFilter(true, true); },
 	onFilterInactive: function(evt){ this.setFilter(true, false); },
 	setFilter: function(doFilter, active){
-		var filters = doFilter?[new sap.ui.model.Filter(
-			"status", 
-			sap.ui.model.FilterOperator.EQ,	
-			(active?1:0)
-		)]:[];
-		this.getView().byId("mailList").getBinding("items").filter(filters);
+		this.getView().byId("mailList").getBinding("items").filter(doFilter
+			?[new sap.ui.model.Filter(
+				"status", 
+				sap.ui.model.FilterOperator.EQ,	
+				(active?1:0)
+			)]
+			:[]
+		);
 	},
-	
-  status :  function (sStatus) {
-      if (sStatus === 0) {
-        return "Success";
-      } else if (sStatus === 1) {
-        return "Warning";
-      } else {
-        return "None";
-      }
-  }
+	onNew: function(evt){
+	    if(!this._createDialog) {
+			this._createDialog = sap.ui.xmlfragment("de.esconderse.view.fragment.Create", this);
+			this.getView().addDependent(this._createDialog);
+		}
+	    //this.getView().byId("inputRename").setValue();
+//	    sap.ui.getCore().byId("inputRename").setValue();
+	    this._createDialog.open();
+	/*
+		// If we're on a phone, include nav in history; if not, don't.
+		var bReplace = jQuery.device.is.phone ? false : true;
+		
+		this._getRouter().navTo("create", {
+			from: "master",
+			forward: null
+		}, bReplace);
+	*/	
+		/*
+		router.myNavToWithoutHash({
+			currentView : this.getView(),
+			targetViewName : "de.esconderse.view.AddProduct",
+			targetViewType : "XML",
+			transition : "slide"
+		});
+		*/
+	},
+	// ---------- Router
+	_getRouter: function(){
+		return sap.ui.core.UIComponent.getRouterFor(this);
+	},
+	onRouteMatched : function(evt) {
+		var list = this.getView().byId("mailList");
+		var name = evt.getParameter("name");
+		var args = evt.getParameter("arguments");
+
+		// Wait for the list to be loaded once
+		jQuery.when(this.oUpdateFinishedDeferred).then(jQuery.proxy(function() {
+			var itemList;
+			// On the empty hash select the first item
+			if (name === "main") {
+				this.selectFirst();
+			}
+			// Try to select the item in the list
+			if (name === "forward") {
+				itemList = list.getItems();
+				for (var i = 0; i < itemList.length; i++) {
+					var path = itemList[i].getBindingContext().getPath();
+					if (path === "/" + args.forward) {
+						list.setSelectedItem(itemList[i], true);
+						break;
+					}
+				}	
+			}
+		}, this));
+	}
 });

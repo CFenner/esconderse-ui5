@@ -1,20 +1,22 @@
 <mvc:View
 	controllerName="de.esconderse.view.Master"
 	displayBlock="true"
+	xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns="sap.m">
 	<Page
-		id="page"
 		title="{i18n>masterTitle}">
 		<subHeader>
-			<Bar id="searchBar">
+			<Bar>
 				<contentMiddle>
 					<SearchField
-						id="searchField"
-						showRefreshButton="{device>/isNoTouch}"
-						search="onSearch"
+						width="100%"
 						tooltip="{i18n>masterSearchTooltip}"
-						width="100%">
+            			showRefreshButton="{device>/isNoTouch}"
+            			search="onSearch"
+            			liveChange="onSearch" >
 					</SearchField>
 				</contentMiddle>
 			</Bar>
@@ -26,38 +28,27 @@
 				refresh="doRefresh"/>
 			<List
 				id="mailList"
-				items="{/result}"
+				items="{/}"
 				mode="{device>/listMode}"
 				noDataText="{i18n>masterListNoDataText}"
-				select="onSelect"
-				growing="true"
-				growingScrollToLoad="true">
+				selectionChange="onForward">
 				<items>
 					<ObjectListItem
+						press="onForward"
 						type="{device>/listItemType}"
-						press="onSelect"
 						title="{description}"
-						number="{
-							path: 'status'
-						}"
-						numberUnit="USD">
-				        <firstStatus>
-          					<ObjectStatus
-            					text="{path:'status',formatter:'de.esconderse.util.Formatter.status2'}"
-            					state="{
-              						path: 'status',
-              						formatter: '.status'
-								}" />
-						</firstStatus>
-						
-        <secondStatus>
-          <ObjectStatus
-            text="{status}"
-            state="{
-              path: 'status',
-              formatter: '.status'
-            }" />
-        </secondStatus>
+						icon="{
+							path: 'status', 
+							formatter: 'de.esconderse.util.Formatter.statusIcon'
+						}">
+						<customData>
+							<core:CustomData 
+								key="class" 
+								value="{
+									path: 'status', 
+									formatter: 'de.esconderse.util.Formatter.statusSetClass'
+								}"/>
+						</customData>
 					</ObjectListItem>
 				</items>
 			</List>
@@ -69,20 +60,36 @@
 						tooltip="{i18n>masterFooterHomeButtonTooltip}"
 						icon="sap-icon://home" 
 						press="onHome"/>
+					<Button 
+						tooltip="{i18n>masterFooterHomeButtonTooltip}"
+						icon="" 
+						text="Logout"
+						press="onLogout"
+						visible="{account>/auth}"/>
 				</contentLeft>
+				<contentMiddle>
+					<ScrollContainer visible="{account>/unauth}">
+						<html:a href="#" onclick="navigator.id.request();" class="persona-button dark">
+							<html:span style="text-align: center;">SignIn</html:span>
+						</html:a>
+					</ScrollContainer>
+				</contentMiddle>
 				<contentRight>
 					<Button 
 						tooltip="{i18n>masterFooterUsageButtonTooltip}"
 						icon="sap-icon://bar-chart" 
-						press="onMenuUsage"/>
+						press="onMenuUsage"
+						visible="{account>/auth}"/>
 					<Button 
 						tooltip="{i18n>masterFooterFilterButtonTooltip}"
 						icon="sap-icon://filter" 
-						press="onMenuFilter"/>
+						press="onMenuFilter"
+						visible="{account>/auth}"/>
 					<Button
 						tooltip="{i18n>masterFooterAddButtonTooltip}"
 						icon="sap-icon://add"
-						press="onAddProduct" />
+						press="onNew"
+						visible="{account>/auth}"/>
 				</contentRight>
 			</Bar>
 		</footer>
