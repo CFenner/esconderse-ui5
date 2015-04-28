@@ -32,17 +32,14 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
 			new sap.ui.model.json.JSONModel(
 				this.useMockData
 				?"model/account.json"
-				:"https://esconderse.de/gateway.php?account"
-//				:"https://esconderse.de/ajax.php?account"
+				:"https://esconderse.de/gateway?account"
 			)//.setDefaultBindingMode("OneWay")
 			, "account")
 		.setModel(
 			new sap.ui.model.json.JSONModel(
 				this.useMockData
 				?"model/mailListNew.json"
-//				?"model/mailList.json"
 				:"https://esconderse.de/ajax.php?list"
-				//:"https://esconderse.de/ajax.php?a=get"
 			)//.setDefaultBindingMode("OneWay")
 		)
 		.getRouter()
