@@ -2,20 +2,28 @@
   xmlns="sap.m"
   xmlns:core="sap.ui.core">
 	<Dialog
-		title="{i18n>pageForward.dialogRename.title}"
+		title="{i18n>dialogRename.title}"
 		type="Message" >
-		<Label text="{i18n>pageForward.dialogRename.label}" labelFor="inputRename"></Label>
+		<Label 
+			text="{i18n>dialogRename.label}" 
+			labelFor="inputRename" />
 		<Input
 			id="inputRename"
 			name="description"
 			placeholder="{description}" />
-	    <Text id="textId" text="{id}" visible="false"/>
-	    <Text text="{i18n>pageForward.dialogRename.description}" />
+	    <Text id="textId" text="{id}" visible="false" />
+	    <Text text="{i18n>dialogRename.description}" />
 	    <beginButton>
-			<Button text="{i18n>pageForward.dialogRename.btnCancel}" type="Reject" press="onRenameDialogClose" />
+			<Button 
+				text="{i18n>dialogRename.btnCancel}" 
+				type="Reject" 
+				press="onRenameDialogClose" />
 		</beginButton>
 		<endButton>
-			<Button text="{i18n>pageForward.dialogRename.btnRename}" type="Emphasized" press="doRename" />
+			<Button 
+				text="{i18n>dialogRename.btnRename}" 
+				type="Emphasized" 
+				press="doRename" />
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

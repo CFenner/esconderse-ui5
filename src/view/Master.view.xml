@@ -7,13 +7,13 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns="sap.m">
 	<Page
-		title="{i18n>masterTitle}">
+		title="{i18n>pageMaster.title}">
 		<subHeader>
 			<Bar>
 				<contentMiddle>
 					<SearchField
 						width="100%"
-						tooltip="{i18n>masterSearchTooltip}"
+						tooltip="{i18n>pageMaster.search.tooltip}"
             			showRefreshButton="{device>/isNoTouch}"
             			search="onSearch"
             			liveChange="onSearch" >
@@ -30,7 +30,7 @@
 				id="mailList"
 				items="{/}"
 				mode="{device>/listMode}"
-				noDataText="{i18n>masterListNoDataText}"
+				noDataText="{i18n>pageMaster.list.textNoData}"
 				selectionChange="onForward">
 				<items>
 					<ObjectListItem
@@ -57,36 +57,40 @@
 			<Bar>
 				<contentLeft>
 					<Button 
-						tooltip="{i18n>masterFooterHomeButtonTooltip}"
+						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
 						icon="sap-icon://home" 
 						press="onHome"/>
 					<Button 
-						tooltip="{i18n>masterFooterHomeButtonTooltip}"
-						icon="" 
-						text="Logout"
+						tooltip="{i18n>pageMaster.footer.btnLogout.tooltip}"
+						text="{i18n>pageMaster.footer.btnLogout}"
 						press="onLogout"
 						visible="{account>/auth}"/>
 				</contentLeft>
 				<contentMiddle>
 					<ScrollContainer visible="{account>/unauth}">
-						<html:a href="#" onclick="navigator.id.request();" class="persona-button dark">
-							<html:span style="text-align: center;">SignIn</html:span>
+						<html:a 
+							href="#" 
+							onclick="navigator.id.request();" 
+							class="persona-button dark">
+							<Text 
+								text="{i18n>pageMaster.footer.btnLogin}"
+								textAlign="Center"/>
 						</html:a>
 					</ScrollContainer>
 				</contentMiddle>
 				<contentRight>
 					<Button 
-						tooltip="{i18n>masterFooterUsageButtonTooltip}"
+						tooltip="{i18n>pageMaster.footer.btnUsage.tooltip}"
 						icon="sap-icon://bar-chart" 
 						press="onMenuUsage"
 						visible="{account>/auth}"/>
 					<Button 
-						tooltip="{i18n>masterFooterFilterButtonTooltip}"
+						tooltip="{i18n>pageMaster.footer.btnFilter.tooltip}"
 						icon="sap-icon://filter" 
 						press="onMenuFilter"
 						visible="{account>/auth}"/>
 					<Button
-						tooltip="{i18n>masterFooterAddButtonTooltip}"
+						tooltip="{i18n>pageMaster.footer.btnNew.tooltip}"
 						icon="sap-icon://add"
 						press="onNew"
 						visible="{account>/auth}"/>

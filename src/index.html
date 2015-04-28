@@ -27,7 +27,6 @@
 		    navigator.id.watch({
     		    loggedInUser: 'null',
         		onlogin: function (assertion) {
-        			alert('fire ajax' +assertion);
         			$.ajax({
         				type: 'POST',
 						url: 'https://esconderse.de/verify',

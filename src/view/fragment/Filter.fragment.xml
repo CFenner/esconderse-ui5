@@ -2,20 +2,20 @@
   xmlns="sap.m"
   xmlns:core="sap.ui.core">
   	<ActionSheet
-		title="Einträge filtern"
+		title="{i18n>pageMaster.footer.filter.title}"
 		placement="Top">
 		<buttons>
 	  		<Button 
 	  			icon="sap-icon://back" 
-	  			text="{i18n>masterFilterAllButton}" 
+	  			text="{i18n>pageMaster.footer.filterNone}" 
 	  			press="onFilterReset"/>	
 	  		<Button 
 	  			icon="sap-icon://connected" 
-	  			text="{i18n>masterFilterActiveButton}" 
+	  			text="{i18n>pageMaster.footer.filterActive}" 
 	  			press="onFilterActive"/>
 	  		<Button 
 	  			icon="sap-icon://disconnected" 
-	  			text="{i18n>masterFilterInactiveButton}" 
+	  			text="{i18n>pageMaster.footer.filterInactive}" 
 	  			press="onFilterInactive">
 	  			<customData>
 	  				<core:CustomData key="status" value="inactive"/>

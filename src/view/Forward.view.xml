@@ -8,7 +8,7 @@
 		showNavButton="{device>/isPhone}"
 		navButtonPress="onNavBack"
 		class="sapUiFioriObjectPage"
-		title="{i18n>forwardTitle}">
+		title="{i18n>pageForward.title}">
 		<content>
 			<ObjectHeader title="{description}">
 				<attributes>
@@ -24,16 +24,16 @@
 						text="{
 							parts:[
 								{path: 'status'},
-								{path: 'i18n>forwardStatusActive'},
-								{path: 'i18n>forwardStatusInactive'}
+								{path: 'i18n>pageForward.statusActive'},
+								{path: 'i18n>pageForward.statusInactive'}
 							], 
 							formatter: 'de.esconderse.util.Formatter.statusText'
 						}" 
 						tooltip="{
 							parts:[
 								{path: 'status'},
-								{path: 'i18n>forwardStatusActive'},
-								{path: 'i18n>forwardStatusInactive'}
+								{path: 'i18n>pageForward.statusActive'},
+								{path: 'i18n>pageForward.statusInactive'}
 							], 
 							formatter: 'de.esconderse.util.Formatter.statusText'
 						}"
@@ -56,8 +56,8 @@
 				id="idIconTabBar">
 				<items>
 					<IconTabFilter
-						text="{i18n>forwardTabTags}"
-						tooltip="{i18n>forwardTabTooltipTags}"
+						text="{i18n>pageForward.tabTags.title}"
+						tooltip="{i18n>pageForward.tabTags.tooltip}"
 						icon="sap-icon://tags">
 						<content>	
 							<Tokenizer width="100%" editable="true" tokens="{tags}">
@@ -115,7 +115,11 @@
 		<footer>
 			<Toolbar>
     	    	<ToolbarSpacer/>
-    	    	<Button text="{i18n>pageForward.footer.buttonRename}" press="onRenameDialog" type="Emphasized" icon="sap-icon://edit"/>
+    	    	<Button 
+    	    		text="{i18n>pageForward.footer.btnRename}" 
+    	    		press="onRenameDialog" 
+    	    		type="Emphasized" 
+    	    		icon="sap-icon://edit"/>
 			<!--
     	    	<Button text="Activate" type="Accept" icon="sap-icon://connected"/>
     	    	<Button text="Deactivate" type="Reject" icon="sap-icon://disconnected"/>
