@@ -1,0 +1,128 @@
+<mvc:View
+	controllerName="de.esconderse.view.Forward"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Page
+		id="pageForward"
+		showNavButton="{device>/isPhone}"
+		navButtonPress="onNavBack"
+		class="sapUiFioriObjectPage"
+		title="{i18n>forwardTitle}">
+		<content>
+			<ObjectHeader title="{description}">
+				<attributes>
+					<ObjectAttribute text="{email}" />
+					<ObjectAttribute 
+						text="{i18n>pageForward.attrCreated} {
+							path: 'createDate',
+							formatter: 'de.esconderse.util.Formatter.datePretty'
+						}"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus 
+						text="{
+							parts:[
+								{path: 'status'},
+								{path: 'i18n>forwardStatusActive'},
+								{path: 'i18n>forwardStatusInactive'}
+							], 
+							formatter: 'de.esconderse.util.Formatter.statusText'
+						}" 
+						tooltip="{
+							parts:[
+								{path: 'status'},
+								{path: 'i18n>forwardStatusActive'},
+								{path: 'i18n>forwardStatusInactive'}
+							], 
+							formatter: 'de.esconderse.util.Formatter.statusText'
+						}"
+						icon="{
+							path: 'status',
+							formatter: 'de.esconderse.util.Formatter.statusIcon'
+						}"
+						state="{
+							path: 'status',
+							formatter: 'de.esconderse.util.Formatter.statusState'
+						}"/>
+						<!--
+					<ObjectStatus text="{
+						path: 'createDate',
+						formatter: 'de.esconderse.util.Formatter.datePretty'
+					}"/>-->
+				</statuses>
+			</ObjectHeader>
+			<IconTabBar
+				id="idIconTabBar">
+				<items>
+					<IconTabFilter
+						text="{i18n>forwardTabTags}"
+						tooltip="{i18n>forwardTabTooltipTags}"
+						icon="sap-icon://tags">
+						<content>	
+							<Tokenizer width="100%" editable="true" tokens="{tags}">
+								<Token text="{name}" editable="false" />
+							</Tokenizer>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>pageForward.tabHistory.title}"
+						tooltip="{i18n>pageForward.tabHistory.tooltip}"
+						icon="sap-icon://history">
+						<content>
+							<Table id="forwardHistory"
+								inset="false"
+								items="{
+									path: 'history',
+									sorter: {
+										path: 'date'
+									}
+								}">
+    <!--
+    <headerToolbar>
+      <Toolbar>
+        <Label text="Products"></Label>
+      </Toolbar>
+    </headerToolbar>
+    -->
+								<columns>
+									<Column><Text text="{i18n>pageForward.tabHistory.table.headerMsg}" /></Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="{i18n>pageForward.tabHistory.table.headerDate}" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ObjectIdentifier title="{msg}"/>
+											<Text
+												text="{
+													path: 'date',
+													formatter: 'de.esconderse.util.Formatter.datePretty'
+												}"
+												tooltip="{date}"/>
+            							</cells>
+        							</ColumnListItem>
+								</items>
+    						</Table>
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Toolbar>
+    	    	<ToolbarSpacer/>
+    	    	<Button text="{i18n>pageForward.footer.buttonRename}" press="onRenameDialog" type="Emphasized" icon="sap-icon://edit"/>
+			<!--
+    	    	<Button text="Activate" type="Accept" icon="sap-icon://connected"/>
+    	    	<Button text="Deactivate" type="Reject" icon="sap-icon://disconnected"/>
+    	    	<ToggleButton text="Deactivate" type="Reject" icon="sap-icon://disconnected"/>
+    	    	<Button text="Delete" type="Reject" icon="sap-icon://delete"/>
+    	    	-->
+    	  	</Toolbar>
+    	</footer>
+	</Page>
+</mvc:View>
