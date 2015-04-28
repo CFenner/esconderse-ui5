@@ -1,0 +1,84 @@
+<mvc:View
+	controllerName="de.esconderse.view.Account"
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		showNavButton="{device>/isPhone}"
+		navButtonPress="onNavBack"
+		class="sapUiFioriObjectPage"
+		title="{i18n>detailTitle}">
+		<content>
+			<ObjectHeader title="{account>/email}">
+				<attributes>
+					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
+				</attributes>
+			</ObjectHeader>
+			<IconTabBar expanded="{device>/isNoPhone}">
+				<items>
+          			<IconTabFilter
+            			text="{i18n>pageAccount.tabUsage.title}"
+            			tooltip="{i18n>pageAccount.tabUsage.tooltip}"
+            			icon="sap-icon://bar-chart">
+						<ProgressIndicator
+	          				id="processBar"
+       	 					width="100%"
+        					percentValue="{
+        						parts:[
+        							{path: 'account>/permission/max'},
+        							{path:'account>/permission/current'}
+        						], 
+       						 	formatter: 'de.esconderse.util.Formatter.usagePercent'
+       						}"
+        					displayValue="{
+        						parts:[
+        							{path: 'account>/permission/max'},
+        							{path:'account>/permission/current'}
+        						], 
+       						 	formatter: 'de.esconderse.util.Formatter.usageText'
+       						}"
+        					state="{
+        						parts:[
+        							{path: 'account>/permission/max'},
+        							{path:'account>/permission/current'}
+        						], 
+       						 	formatter: 'de.esconderse.util.Formatter.usageState'
+       						}"
+        					showValue="true" />
+          			</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>pageAccount.tabGrant.title}"
+						tooltip="{i18n>pageAccount.tabGrant.tooltip}"
+						icon="sap-icon://customer">
+						<Table items="{account>/permission/grants}">
+							<columns>
+								<Column><Text text="{i18n>accountColumnHeaderReason}" /></Column>
+								<Column><Text text="{i18n>accountColumnHeaderCount}" /></Column>
+								<Column><Text text="{i18n>accountColumnHeaderDate}" /></Column>
+							</columns>
+							<items>
+      							<ColumnListItem>
+					        		<cells>
+					          			<ObjectIdentifier title="{account>description}"/>
+										<Text text="{account>count}" />
+					          			<Text text="{account>prettyDate}" 
+								            tooltip="{account>createDate}"/>
+    			   					</cells>
+								</ColumnListItem>
+			    			</items>
+            			</Table>
+            		</IconTabFilter>
+          			<IconTabFilter
+          				key="about"
+            			text="{i18n>pageAccount.tabAbout.title}"
+            			tooltip="{i18n>pageAccount.tabAbout.tooltip}"
+            			icon="sap-icon://question-mark">
+            			 <Text text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."/>
+            			 <Text text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."/>
+            			 <Text text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."/>            			
+          			</IconTabFilter>
+        		</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>
