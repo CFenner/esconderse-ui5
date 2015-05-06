@@ -6,7 +6,7 @@
 		placement="Top">
 		<buttons>
 	  		<Button 
-	  			icon="sap-icon://back" 
+	  			icon="sap-icon://undo" 
 	  			text="{i18n>pageMaster.footer.filterNone}" 
 	  			press="onFilterReset"/>	
 	  		<Button 
