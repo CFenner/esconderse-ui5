@@ -5,7 +5,7 @@
 		title="{i18n>dialogRename.title}"
 		type="Message" >
 		<Label 
-			text="{i18n>dialogRename.label}" 
+			text="{i18n>dialogRename.labelDescription}" 
 			labelFor="inputRename" />
 		<Input
 			id="inputRename"
