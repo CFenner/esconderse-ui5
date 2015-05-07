@@ -1,0 +1,31 @@
+
+			ul li.esc-inactive{
+				background-color: transparent; 
+				background-image: repeating-linear-gradient(-42deg, transparent, transparent 15px, rgba(255,0,0,.1) 15px, rgba(255,0,0,.1) 30px) !important;
+			}
+			
+			.mig{ padding: 2em 1em; }
+			
+			.mig span{
+				text-transform: uppercase;
+				display: block;
+				font-weight: bolder;
+				text-shadow: .0em .1em #ccc;
+			}
+			
+			.mig span::before{
+				background-color: red;
+				width: 1.4em;
+				height: 1.4em;
+				margin-right: .4em;
+				content: '';
+				top: .3em;
+				position: relative;
+				border-radius: .3rem;
+				box-shadow: 0 0 .2em 0 #ccc inset;
+				display: inline-block;
+			}
+			
+			.mig span:first-child::before{ background-color: black; }
+			
+			.mig span:last-child::before{ background-color: yellow; }
