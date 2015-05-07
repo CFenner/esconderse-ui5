@@ -1,6 +1,14 @@
 jQuery.sap.require("de.esconderse.util.Formatter");
 
 sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
+	register: function(bus){
+		bus.subscribe("master", "enableRefresh", function(control){
+			return function(){
+				control.setBusy(false);
+				control.hide();
+			};
+		}(this.getView().byId("pullToRefresh")));
+	},
 	onInit : function() {
 		this.oUpdateFinishedDeferred = jQuery.Deferred();
 		// ??
@@ -8,23 +16,13 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 			this.oUpdateFinishedDeferred.resolve();
 		}, this);
 		
-		var router = sap.ui.core.UIComponent.getRouterFor(this);
-		router.attachRouteMatched(this.onRouteMatched, this);
-		var bus = sap.ui.getCore().getEventBus();
-		bus.subscribe("esc", "refresh", this);
-		
-		// stop refresh busy
-		bus.subscribe("master", "enableRefresh", function(item){
-			return function(){
-				item.setBusy(false);
-				item.hide();
-			};
-		}(this.getView().byId("pullToRefresh")));
+		this._getRouter().attachRouteMatched(this.onRouteMatched, this);
+		this.register(sap.ui.getCore().getEventBus());
 	},
 	
 	/*
 	onAddProduct : function() {
-		sap.ui.core.UIComponent.getRouterFor(this).myNavToWithoutHash({
+		this._getRouter().myNavToWithoutHash({
 			currentView : this.getView(),
 			targetViewName : "de.esconderse.view.AddProduct",
 			targetViewType : "XML",
@@ -45,12 +43,11 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	},
 	selectForward : function(item) {
 		var path = item.getBindingContext().getPath(), 
-			index = path.split("/")[2],
-			router = sap.ui.core.UIComponent.getRouterFor(this);
+			index = path.split("/")[2];
 			
 		// If we're on a phone, include nav in history; if not, don't.
 		var bReplace = jQuery.device.is.phone ? false : true;
-		router.navTo("forward", {
+		this._getRouter().navTo("forward", {
 			from: "master",
 			forward: index
 		}, bReplace);
@@ -79,7 +76,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	},
 	onRefresh: function(){		
 		var bus = sap.ui.getCore().getEventBus();
-		bus.publish("master", "refresh");	
+		bus.publish("master", "loadList");	
 	},
 	onForward : function(evt, listItem, listItemArray, isSelected) {
 		var listItem = evt.getParameter("listItem") || evt.getSource(), 
@@ -92,7 +89,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	onHome: function(evt){
 		// If we're on a phone, include nav in history; if not, don't.
 		var bReplace = jQuery.device.is.phone ? false : true;
-		sap.ui.core.UIComponent.getRouterFor(this).navTo("account", {
+		this._getRouter().navTo("account", {
 			from: "master",
 			forward: null
 		}, bReplace);
