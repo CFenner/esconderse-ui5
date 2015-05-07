@@ -1,0 +1,45 @@
+@import "palette";
+@import "persona";
+
+@inactive-color-1: transparent;
+@inactive-color-2: rgba(255,0,0,.1);
+@inactive-width: 15px;
+@inactive-degre: -42deg;
+
+/* INACTIVE LIST ITEM */
+ul li.esc-inactive{
+	background-color: transparent; 
+	background-image: repeating-linear-gradient(
+			@inactive-degre, 
+			@inactive-color-1, 
+			@inactive-color-1 @inactive-width, 
+			@inactive-color-2 @inactive-width, 
+			@inactive-color-2 2*@inactive-width
+		) !important;
+}
+
+/* MADE IN GERMANY */
+.mig{ 
+	padding: 2em 1em; 
+
+	span{
+		text-transform: uppercase;
+		display: block;
+		font-weight: bolder;
+		text-shadow: .0em .1em #ccc;
+	}
+	span::before{
+		background-color: red;
+		width: 1.4em;
+		height: 1.4em;
+		margin-right: .4em;
+		content: '';
+		top: .3em;
+		position: relative;
+		border-radius: .3rem;
+		box-shadow: 0 0 .2em 0 #ccc inset;
+		display: inline-block;
+	}
+	span:first-child::before{ background-color: black; }
+	span:last-child::before{ background-color: yellow; }
+}
