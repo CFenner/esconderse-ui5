@@ -10,6 +10,8 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		
 		var router = sap.ui.core.UIComponent.getRouterFor(this);
 		router.attachRouteMatched(this.onRouteMatched, this);
+		var bus = sap.ui.getCore().getEventBus();
+		bus.subscribe("esc", "refresh", this);
 	},
 	
 	/*
@@ -35,7 +37,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	},
 	selectForward : function(item) {
 		var path = item.getBindingContext().getPath(), 
-			index = path.split("/")[1],
+			index = path.split("/")[2],
 			router = sap.ui.core.UIComponent.getRouterFor(this);
 			
 		// If we're on a phone, include nav in history; if not, don't.
@@ -67,6 +69,10 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
     	var binding = list.getBinding("items");
     	binding.filter(filters, "Application");
 	},
+	onRefresh: function(){		
+		var bus = sap.ui.getCore().getEventBus();
+		bus.publish("master", "refresh");	
+	},
 	onForward : function(evt, listItem, listItemArray, isSelected) {
 		var listItem = evt.getParameter("listItem") || evt.getSource(), 
 			isSelected = evt.getParameter("selected");
@@ -84,7 +90,6 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		}, bReplace);
 	},
 	onLogout: function(evt){
-		
 		window.location = "https://esconderse.de/logout.php";
 	},
 	onMenuUsage: function(evt){
@@ -110,14 +115,15 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		this.setFilter(true, true); },
 	onFilterInactive: function(evt){ this.setFilter(true, false); },
 	setFilter: function(doFilter, active){
-		this.getView().byId("mailList").getBinding("items").filter(doFilter
+		var filter = doFilter
 			?[new sap.ui.model.Filter(
 				"status", 
 				sap.ui.model.FilterOperator.EQ,	
 				(active?1:0)
 			)]
-			:[]
-		);
+			:[];
+		
+		this.getView().byId("mailList").getBinding("items").filter(filter);
 	},
 	onNew: function(evt){
 	    if(!this._createDialog) {
