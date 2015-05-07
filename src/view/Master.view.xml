@@ -24,11 +24,12 @@
 		<content>
  		   	<PullToRefresh
         		id="pullToRefresh"
-	    	    visible="{device>/isTouch}"
-				refresh="doRefresh"/>
+				refresh="onRefresh"/>
+				<!--
+	    	    visible="{device>/isTouch}"-->
 			<List
 				id="mailList"
-				items="{/}"
+				items="{/list}"
 				mode="{device>/listMode}"
 				noDataText="{i18n>pageMaster.list.textNoData}"
 				selectionChange="onForward">
