@@ -12,6 +12,14 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		router.attachRouteMatched(this.onRouteMatched, this);
 		var bus = sap.ui.getCore().getEventBus();
 		bus.subscribe("esc", "refresh", this);
+		
+		// stop refresh busy
+		bus.subscribe("master", "enableRefresh", function(item){
+			return function(){
+				item.setBusy(false);
+				item.hide();
+			};
+		}(this.getView().byId("pullToRefresh")));
 	},
 	
 	/*
