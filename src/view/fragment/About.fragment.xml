@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+	<form:SimpleForm
+		minWidth="1024"
+        maxContainerCols="2"
+        editable="false">
+        <form:content>
+        	<core:Title text="Behalte die Kontrolle über deine Email Adresse"/>
+        	<Text text="Mit Esconderse bestimmst du, wer deine Email Adresse nutzen kann und möchtest."/>
+        </form:content>
+    	<form:content>
+        	<core:Title text="Wie funktioniert das?"/>
+    		<Text text="Mit Weiterleitungen, du gibst nicht mehr deine richtige Email Adresse weiter, sonder einen Verweis auf diese. Mit Esconderse kannst du Weiterleitungen auf deine registrierte Email Adresse anlegen und die Übersicht darüber behalten."/>
+       	</form:content>
+      	<form:content>
+     		<core:Title text="Was, wenn ich unerwünschte Emails erhalte?"/>
+			<core:HTML content='&lt;div class="mig"&gt;&lt;span&gt;made&lt;/span&gt;&lt;span&gt;in&lt;/span&gt;&lt;span&gt;germany&lt;/span&gt;&lt;/div&gt;' />
+       		<Text text="Wenn du möchtest, kannst du jeder Zeit die Weiterleitungen auf deine registrierte Email Adresse deaktivieren und so die Mail Flut stoppen."/>
+       	</form:content>
+	</form:SimpleForm> 
+</core:FragmentDefinition>
