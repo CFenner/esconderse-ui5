@@ -12,44 +12,11 @@
 		    data-sap-ui-libs='sap.m'
 		    data-sap-ui-resourceroots='{"de.esconderse": "./"}'
 		    data-sap-ui-xx-bindingSyntax="complex">
-		</script>
-<!--
+		</script><!--
 		    src='resources/sap-ui-core.js'
 		    src='https://openui5.hana.ondemand.com/resources/sap-ui-core.js'
         	src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
--->
-        <script>
-		    navigator.id.watch({
-    		    loggedInUser: 'null',
-        		onlogin: function (assertion) {
-        			$.ajax({
-        				type: 'POST',
-						url: 'https://esconderse.de/verify',
-						data: {assertion: assertion},  
-						success: function(data){
-							window.location.reload();
-//		        	        alert("login" + JSON.stringify(data));
-						},
-						error: function(jqXHR, textStatus, errorThrown ){
-							alert("error" + textStatus + errorThrown); 
-						}, 
-						dataType: 'json'
-					});
-		        },
-		        onlogout: function () {
-		        	
-					alert("logout");
-    		    }
-		    });
-            sap.ui.getCore().attachInit(function() {
-                new sap.m.Shell({
-                    app: new sap.ui.core.ComponentContainer({
-                        height : "100%",
-                        name : "de.esconderse"
-                    })
-                }).placeAt("content");
-            });
-        </script>
+-->		<script src="js/main.js"></script>
 	</head>
 	<body class='sapUiBody' id="content" />
 </html>
