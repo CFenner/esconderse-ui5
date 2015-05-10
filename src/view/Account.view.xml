@@ -2,78 +2,70 @@
 	controllerName="de.esconderse.view.Account"
 	xmlns="sap.m" 
 	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form">
 	<Page
 		showNavButton="{device>/isPhone}"
 		navButtonPress="onNavBack"
 		class="sapUiFioriObjectPage"
 		title="{i18n>detailTitle}">
-		<content>
+		<content><!--
 			<ObjectHeader title="{account>/email}">
 				<attributes>
 					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
 				</attributes>
-			</ObjectHeader>
+			</ObjectHeader>-->
 			<IconTabBar expanded="{device>/isNoPhone}">
 				<items>
+					<IconTabFilter
+						visible="{account>/auth}"
+						text="{i18n>pageAccount.tabAccount.title}"
+						tooltip="{i18n>pageAccount.tabAccount.tooltip}"
+						icon="sap-icon://customer">
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.AccountTab" type="XML"/>
+            		</IconTabFilter>
           			<IconTabFilter
+						visible="{account>/auth}"
             			text="{i18n>pageAccount.tabUsage.title}"
             			tooltip="{i18n>pageAccount.tabUsage.tooltip}"
             			icon="sap-icon://bar-chart">
-						<ProgressIndicator
-	          				id="processBar"
-       	 					width="100%"
-        					percentValue="{
-        						parts:[
-        							{path: 'account>/permission/max'},
-        							{path:'account>/permission/current'}
-        						], 
-       						 	formatter: 'de.esconderse.util.Formatter.usagePercent'
-       						}"
-        					displayValue="{
-        						parts:[
-        							{path: 'account>/permission/max'},
-        							{path:'account>/permission/current'}
-        						], 
-       						 	formatter: 'de.esconderse.util.Formatter.usageText'
-       						}"
-        					state="{
-        						parts:[
-        							{path: 'account>/permission/max'},
-        							{path:'account>/permission/current'}
-        						], 
-       						 	formatter: 'de.esconderse.util.Formatter.usageState'
-       						}"
-        					showValue="true" />
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.UsageTab" type="XML"/>
           			</IconTabFilter>
 					<IconTabFilter
+						visible="{account>/auth}"
 						text="{i18n>pageAccount.tabGrant.title}"
 						tooltip="{i18n>pageAccount.tabGrant.tooltip}"
-						icon="sap-icon://customer">
-						<Table items="{account>/permission/grants}">
-							<columns>
-								<Column><Text text="{i18n>accountColumnHeaderReason}" /></Column>
-								<Column><Text text="{i18n>accountColumnHeaderCount}" /></Column>
-								<Column><Text text="{i18n>accountColumnHeaderDate}" /></Column>
-							</columns>
-							<items>
-      							<ColumnListItem>
-					        		<cells>
-					          			<ObjectIdentifier title="{account>description}"/>
-										<Text text="{account>count}" />
-					          			<Text text="{account>prettyDate}" 
-								            tooltip="{account>createDate}"/>
-    			   					</cells>
-								</ColumnListItem>
-			    			</items>
-            			</Table>
+						icon="sap-icon://key">
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.GrantTab" type="XML"/>
             		</IconTabFilter>
+          			<IconTabFilter
+						visible="{account>/auth}"
+            			icon="sap-icon://e-care">
+          			</IconTabFilter>
+          			<IconTabFilter
+						visible="{account>/auth}"
+            			icon="sap-icon://heating-cooling">
+          			</IconTabFilter>
+          			<IconTabFilter
+						visible="{account>/auth}"
+          				text="Danger Zone"
+            			icon="sap-icon://lab">
+						<form:SimpleForm
+							minWidth="1024"
+     						maxContainerCols="2"
+        					editable="false">
+        					<form:content>
+        						<core:Title text="Danger Zone"/>
+            					<Text text="Account löschen?"/>
+        					</form:content>
+						</form:SimpleForm> 
+          			</IconTabFilter>
           			<IconTabFilter
           				key="about"
             			text="{i18n>pageAccount.tabAbout.title}"
             			tooltip="{i18n>pageAccount.tabAbout.tooltip}"
             			icon="sap-icon://question-mark">
-            			<core:Fragment fragmentName="de.esconderse.view.fragment.About" type="XML"/>
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.AboutTab" type="XML"/>
           			</IconTabFilter>
         		</items>
 			</IconTabBar>
