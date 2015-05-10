@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+	<form:SimpleForm
+		minWidth="1024"
+        maxContainerCols="2"
+        editable="false">
+        <form:content>
+	
+        	<core:Title text="Zugewiesene Weiterleitungen"/>
+	<Table items="{account>/permission/grants}">
+		<columns>
+			<Column><Text text="{i18n>pageAccount.tabGrant.table.headerReason}" /></Column>
+			<Column><Text text="{i18n>pageAccount.tabGrant.table.headerCount}" /></Column>
+			<Column><Text text="{i18n>pageAccount.tabGrant.table.headerDate}" /></Column>
+		</columns>
+		<items>
+    		<ColumnListItem>
+	       		<cells>
+	       			<ObjectIdentifier title="{account>description}"/>
+					<Text text="{account>count}" />
+	       			<Text text="{account>prettyDate}" 
+			            tooltip="{account>createDate}"/>
+    			</cells>
+			</ColumnListItem>
+		</items>
+    </Table>
+       	</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

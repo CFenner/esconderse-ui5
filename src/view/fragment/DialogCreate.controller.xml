@@ -1,6 +1,6 @@
 jQuery.sap.require("de.esconderse.util.Hektor");
 
-sap.ui.core.mvc.Controller.extend("de.esconderse.view.fragment.Create", {
+sap.ui.core.mvc.Controller.extend("de.esconderse.view.fragment.DialogCreate", {
 	onInit: function(evt){
 	
 	},

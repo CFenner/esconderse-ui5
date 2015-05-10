@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+	<form:SimpleForm
+		minWidth="1024"
+		maxContainerCols="2"
+		editable="false">
+		<form:content>
+			<core:Title text="Genutzte Weiterleitungen"/>
+			<ProgressIndicator
+	        	id="processBar"
+       	 		width="100%"
+        		percentValue="{
+        			parts:[
+        				{path: 'account>/permission/max'},
+        				{path:'account>/permission/current'}
+        			], 
+       				formatter: 'de.esconderse.util.Formatter.usagePercent'
+       			}"
+        		displayValue="{
+        			parts:[
+        				{path: 'account>/permission/max'},
+        				{path:'account>/permission/current'}
+        			], 
+       				formatter: 'de.esconderse.util.Formatter.usageText'
+       			}"
+        		state="{
+        			parts:[
+        				{path: 'account>/permission/max'},
+        				{path:'account>/permission/current'}
+        			], 
+       				formatter: 'de.esconderse.util.Formatter.usageState'
+       			}"
+				showValue="true" />
+		</form:content>
+	</form:SimpleForm> 
+</core:FragmentDefinition>

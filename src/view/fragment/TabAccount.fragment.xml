@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+	<form:SimpleForm
+		minWidth="1024"
+        maxContainerCols="2"
+        editable="false">
+        <form:content>
+        	<core:Title text="Basis-Daten"/>
+			<ObjectHeader title="{account>/email}">
+				<attributes>
+					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
+				</attributes>
+			</ObjectHeader>
+          <Label text="private Email Adresse" />
+          <Text text="{account>/email}" />
+          <Label text="Angelegt" />
+          <Text text="{account>/prettyDate}" />
+        </form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>
