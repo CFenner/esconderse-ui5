@@ -10,7 +10,8 @@
 		class="sapUiFioriObjectPage"
 		title="{i18n>pageForward.title}">
 		<content>
-			<ObjectHeader title="{description}">
+			<ObjectHeader 
+				title="{description}">
 				<attributes>
 					<ObjectAttribute text="{email}" />
 					<ObjectAttribute 
@@ -52,10 +53,15 @@
 					}"/>-->
 				</statuses>
 			</ObjectHeader>
+			<Input
+				value="{email}"
+				editable="false"
+				enabled="true"
+		        type="Text" />
 			<IconTabBar
 				id="idIconTabBar">
 				<items>
-					<IconTabFilter
+<!--					<IconTabFilter
 						text="{i18n>pageForward.tabTags.title}"
 						tooltip="{i18n>pageForward.tabTags.tooltip}"
 						icon="sap-icon://tags">
@@ -64,7 +70,7 @@
 								<Token text="{name}" editable="false" />
 							</Tokenizer>
 						</content>
-					</IconTabFilter>
+					</IconTabFilter>-->
 					<IconTabFilter
 						text="{i18n>pageForward.tabHistory.title}"
 						tooltip="{i18n>pageForward.tabHistory.tooltip}"
@@ -73,18 +79,15 @@
 							<Table id="forwardHistory"
 								inset="false"
 								items="{
-									path: 'history',
-									sorter: {
-										path: 'date'
-									}
+									path: 'history'
 								}">
-    <!--
-    <headerToolbar>
-      <Toolbar>
-        <Label text="Products"></Label>
-      </Toolbar>
-    </headerToolbar>
-    -->
+								<!--
+								,
+									sorter: {
+										path: 'createDate',
+								        descending: true
+									}
+								-->
 								<columns>
 									<Column><Text text="{i18n>pageForward.tabHistory.table.headerMsg}" /></Column>
 									<Column
@@ -96,13 +99,13 @@
 								<items>
 									<ColumnListItem>
 										<cells>
-											<ObjectIdentifier title="{msg}"/>
+											<ObjectIdentifier title="{msg}, {value}"/>
 											<Text
 												text="{
-													path: 'date',
+													path: 'createDate',
 													formatter: 'de.esconderse.util.Formatter.datePretty'
 												}"
-												tooltip="{date}"/>
+												tooltip="{createDate}"/>
             							</cells>
         							</ColumnListItem>
 								</items>
@@ -116,16 +119,35 @@
 			<Toolbar>
     	    	<ToolbarSpacer/>
     	    	<Button 
+    	    		id="btnRename"
     	    		text="{i18n>pageForward.footer.btnRename}" 
-    	    		press="onRenameDialog" 
+    	    		press="onDialogRenameOpen" 
     	    		type="Emphasized" 
     	    		icon="sap-icon://edit"/>
-			<!--
-    	    	<Button text="Activate" type="Accept" icon="sap-icon://connected"/>
-    	    	<Button text="Deactivate" type="Reject" icon="sap-icon://disconnected"/>
-    	    	<ToggleButton text="Deactivate" type="Reject" icon="sap-icon://disconnected"/>
-    	    	<Button text="Delete" type="Reject" icon="sap-icon://delete"/>
-    	    	-->
+    	    	<ToggleButton 
+    	    		text="{i18n>pageForward.footer.btnDeactivate}" 
+    	    		press=""
+    	    		type="Reject" 
+    	    		icon="sap-icon://disconnected"/>
+    	    	<Button 
+    	    		id="btnDelete"
+    	    		text="{i18n>pageForward.footer.btnRemove}" 
+    	    		press="doDelete"
+    	    		visible="false"
+    	    		type="Reject" 
+    	    		icon="sap-icon://delete"/>
+    	    	<Button 
+    	    		id="btnActivate"
+    	    		text="Activate" 
+    	    		press="doActivate"
+    	    		type="Accept" 
+    	    		icon="sap-icon://connected"/>
+    	    	<Button 
+    	    		id="btnDeactivate"
+    	    		text="Deactivate" 
+    	    		press="doDeactivate"
+    	    		type="Reject" 
+    	    		icon="sap-icon://disconnected"/>
     	  	</Toolbar>
     	</footer>
 	</Page>
