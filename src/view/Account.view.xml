@@ -22,21 +22,21 @@
 						text="{i18n>pageAccount.tabAccount.title}"
 						tooltip="{i18n>pageAccount.tabAccount.tooltip}"
 						icon="sap-icon://customer">
-            			<core:Fragment fragmentName="de.esconderse.view.fragment.AccountTab" type="XML"/>
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.TabAccount" type="XML"/>
             		</IconTabFilter>
           			<IconTabFilter
 						visible="{account>/auth}"
             			text="{i18n>pageAccount.tabUsage.title}"
             			tooltip="{i18n>pageAccount.tabUsage.tooltip}"
             			icon="sap-icon://bar-chart">
-            			<core:Fragment fragmentName="de.esconderse.view.fragment.UsageTab" type="XML"/>
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.TabUsage" type="XML"/>
           			</IconTabFilter>
 					<IconTabFilter
 						visible="{account>/auth}"
 						text="{i18n>pageAccount.tabGrant.title}"
 						tooltip="{i18n>pageAccount.tabGrant.tooltip}"
 						icon="sap-icon://key">
-            			<core:Fragment fragmentName="de.esconderse.view.fragment.GrantTab" type="XML"/>
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.TabGrant" type="XML"/>
             		</IconTabFilter>
           			<IconTabFilter
 						visible="{account>/auth}"
@@ -65,7 +65,7 @@
             			text="{i18n>pageAccount.tabAbout.title}"
             			tooltip="{i18n>pageAccount.tabAbout.tooltip}"
             			icon="sap-icon://question-mark">
-            			<core:Fragment fragmentName="de.esconderse.view.fragment.AboutTab" type="XML"/>
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.TabAbout" type="XML"/>
           			</IconTabFilter>
         		</items>
 			</IconTabBar>
