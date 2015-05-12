@@ -1,20 +1,26 @@
 jQuery.sap.require("de.esconderse.util.Hektor");
 
 sap.ui.core.mvc.Controller.extend("de.esconderse.view.fragment.DialogCreate", {
-	onInit: function(evt){
+/*	onInit: function(evt){
 	
 	},
-	// ---------- actions
+*/	// ---------- actions
 	onCreate: function(evt){
 		var description = this.getView().byId("createDescription").getValue(),
 			state = this.getView().byId("createState").getState();
-		Hektor.create(description, state);
+		de.esconderse.util.Hektor.create(description, state, 
+			function(){
+				core.getEventBus().publish({}, "master", "enableCreate");
+			}, 
+			function(){
+				
+			});
 	},
 	onCancel: function(evt){
-		sap.ui.getCore().byId("dialogCreate").close();
-//		this._createDialog.close();
-//		this._getRouter().myNavBack("/forward/1");
-	},
+		var core = sap.ui.getCore();
+		core.byId("dialogCreate").close();
+		core.getEventBus().publish({}, "master", "enableCreate");
+/*	},
 	// ---------- navigation
 	onNavBack : function() {
 		// This is only relevant when running on phone devices
@@ -23,5 +29,6 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.fragment.DialogCreate", {
 	// ---------- private
 	_getRouter: function(){
 		return sap.ui.core.UIComponent.getRouterFor(this);
+*/
 	}
 });

@@ -1,9 +1,11 @@
 <core:FragmentDefinition
-  xmlns="sap.m"
-  xmlns:core="sap.ui.core">
+	controllerName="de.esconderse.view.fragment.DialogRename"
+	xmlns="sap.m"
+  	xmlns:core="sap.ui.core">
 	<Dialog
+		id="dialogRename"
 		title="{i18n>dialogRename.title}"
-		type="Message" >
+		type="Message">
 		<Label 
 			text="{i18n>dialogRename.labelDescription}" 
 			labelFor="inputRename" />
@@ -17,7 +19,7 @@
 			<Button 
 				text="{i18n>dialogRename.btnCancel}" 
 				type="Reject" 
-				press="onRenameDialogClose" />
+				press="onRename" />
 		</beginButton>
 		<endButton>
 			<Button 
