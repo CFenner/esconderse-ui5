@@ -1,7 +1,9 @@
 {
         "name" : "Esconderse",
         "version" : "1.0",
-        "includes" : [],
+        "includes" : [
+        	"css/esconderse.css"
+        ],
         "dependencies" : {
             "libs" : ["sap.m", "sap.ui.layout"],
             "components" : []
@@ -22,29 +24,23 @@
 				"targetAggregation" : "detailPages",
 				"clearTarget" : false
 			},
-			"routes" : [
-				{
-					"pattern" : "",
-					"name" : "main",
-					"view" : "Master",
-					"targetAggregation" : "masterPages",
-					"targetControl" : "idAppControl",
-					"subroutes" : [
-						{
-							"pattern" : "/forward/{forward}",
-							"name" : "forward",
-							"view" : "Forward"
-						},{
-							"pattern": "create",
-							"name": "create",
-							"view": "New"
-						},{
-							"pattern": "account",
-							"name" : "account",
-							"view" : "Account"
-						}
-					]
-				}
-			]
+			"routes" : [{
+				"pattern" : "",
+				"name" : "main",
+				"view" : "Master",
+				"targetAggregation" : "masterPages",
+				"targetControl" : "idAppControl",
+				"subroutes" : [
+					{
+						"pattern" : "/forward/{forward}",
+						"name" : "forward",
+						"view" : "Forward"
+					},{
+						"pattern": "account",
+						"name" : "account",
+						"view" : "Account"
+					}
+				]
+			}]
 		}
     }
