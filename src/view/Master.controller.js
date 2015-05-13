@@ -1,13 +1,19 @@
 jQuery.sap.require("de.esconderse.util.Formatter");
 
 sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
-	register: function(bus){
+	registerListener: function(bus){
 		bus.subscribe("master", "enableRefresh", function(control){
 			return function(){
 				control.setBusy(false);
 				control.hide();
 			};
 		}(this.getView().byId("pullToRefresh")));
+		bus.subscribe("master", "enableCreate", function(control){
+			return function(){
+				control.setBusy(false);
+			};
+		}(this.getView().byId("btnCreate")));
+		return this;
 	},
 	onInit : function() {
 		this.oUpdateFinishedDeferred = jQuery.Deferred();
@@ -16,20 +22,9 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 			this.oUpdateFinishedDeferred.resolve();
 		}, this);
 		
-		this._getRouter().attachRouteMatched(this.onRouteMatched, this);
-		this.register(sap.ui.getCore().getEventBus());
+		this.registerListener(sap.ui.getCore().getEventBus())
+			._getRouter().attachRouteMatched(this.onRouteMatched, this);
 	},
-	
-	/*
-	onAddProduct : function() {
-		this._getRouter().myNavToWithoutHash({
-			currentView : this.getView(),
-			targetViewName : "de.esconderse.view.AddProduct",
-			targetViewType : "XML",
-			transition : "slide"
-		});
-	},
-	*/
 	// ---------- navigation
 	selectFirst : function() {
 		if (!sap.ui.Device.system.phone) {
@@ -55,11 +50,11 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	// ---------- list
 	onSearch : function (evt, refreshButtonPressed) {    
 		if(refreshButtonPressed){
-			this.doRefresh(evt);
+			this.onRefresh(evt);
 		}
 	    // add filter for search
 	    var filters = [];
-	    var query = evt.getSource().getValue();
+	    var query = evt.getSource().getValue().trim();
 	    if (query && query.length > 0) {
 			filters.push(
 	      		new sap.ui.model.Filter(
@@ -74,7 +69,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
     	var binding = list.getBinding("items");
     	binding.filter(filters, "Application");
 	},
-	onRefresh: function(){		
+	onRefresh: function(evt){		
 		var bus = sap.ui.getCore().getEventBus();
 		bus.publish("master", "loadList");	
 	},
@@ -99,25 +94,25 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	},
 	onMenuUsage: function(evt){
 	    if(!this._usagePopover) {
-			this._usagePopover = sap.ui.xmlfragment("de.esconderse.view.fragment.Usage", this);
+			this._usagePopover = sap.ui.xmlfragment("de.esconderse.view.fragment.PopoverUsage", this);
 			this.getView().addDependent(this._usagePopover);
 		}
 	    this._usagePopover.openBy(evt.getSource());
 	},
 	onMenuFilter: function(evt){
 		if(!this._filterSheet){
-			this._filterSheet = sap.ui.xmlfragment("de.esconderse.view.fragment.Filter", this);
+			this._filterSheet = sap.ui.xmlfragment("de.esconderse.view.fragment.ActionFilter", this);
 			this.getView().addDependent(this._filterSheet);
 		}
 		this._filterSheet.openBy(evt.getSource());
 	},
 	onFilterReset: function(evt){ this.setFilter(false); },
 	onFilterActive: function(evt){ 
-		var src = evt.getSource();
-		
+//		var src = evt.getSource();
 		//alert(src.getData("data-status"));
 //		evt.getSource().set
-		this.setFilter(true, true); },
+		this.setFilter(true, true); 
+	},
 	onFilterInactive: function(evt){ this.setFilter(true, false); },
 	setFilter: function(doFilter, active){
 		var filter = doFilter
@@ -127,34 +122,16 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 				(active?1:0)
 			)]
 			:[];
-		
 		this.getView().byId("mailList").getBinding("items").filter(filter);
 	},
-	onNew: function(evt){
+	onDialogCreateOpen: function(evt){
+		evt.getSource().setBusy(true);
 	    if(!this._createDialog) {
-			this._createDialog = sap.ui.xmlfragment("de.esconderse.view.fragment.Create", this);
+			this._createDialog = sap.ui.xmlfragment("de.esconderse.view.fragment.DialogCreate", this);
 			this.getView().addDependent(this._createDialog);
 		}
-	    //this.getView().byId("inputRename").setValue();
-//	    sap.ui.getCore().byId("inputRename").setValue();
-	    this._createDialog.open();
-	/*
-		// If we're on a phone, include nav in history; if not, don't.
-		var bReplace = jQuery.device.is.phone ? false : true;
-		
-		this._getRouter().navTo("create", {
-			from: "master",
-			forward: null
-		}, bReplace);
-	*/	
-		/*
-		router.myNavToWithoutHash({
-			currentView : this.getView(),
-			targetViewName : "de.esconderse.view.AddProduct",
-			targetViewType : "XML",
-			transition : "slide"
-		});
-		*/
+		this.byId("inputCreate").setValue();
+		this._createDialog.open();
 	},
 	// ---------- Router
 	_getRouter: function(){

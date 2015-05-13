@@ -8,6 +8,18 @@
 	xmlns="sap.m">
 	<Page
 		title="{i18n>pageMaster.title}">
+		<headerContent>
+					<ScrollContainer visible="{account>/unauth}">
+						<html:a 
+							href="#" 
+							onclick="navigator.id.request();" 
+							class="persona-button dark">
+							<Text 
+								text="{i18n>pageMaster.footer.btnLogin}"
+								textAlign="Center"/>
+						</html:a>
+					</ScrollContainer>
+		</headerContent>
 		<subHeader>
 			<Bar>
 				<contentMiddle>
@@ -24,9 +36,8 @@
 		<content>
  		   	<PullToRefresh
         		id="pullToRefresh"
-				refresh="onRefresh"/>
-				<!--
-	    	    visible="{device>/isTouch}"-->
+				refresh="onRefresh"
+	    	    visible="{device>/isTouch}"/>
 			<List
 				id="mailList"
 				items="{/list}"
@@ -68,6 +79,7 @@
 						visible="{account>/auth}"/>
 				</contentLeft>
 				<contentMiddle>
+					<!--
 					<ScrollContainer visible="{account>/unauth}">
 						<html:a 
 							href="#" 
@@ -78,6 +90,7 @@
 								textAlign="Center"/>
 						</html:a>
 					</ScrollContainer>
+					-->
 				</contentMiddle>
 				<contentRight>
 					<Button 
@@ -91,9 +104,10 @@
 						press="onMenuFilter"
 						visible="{account>/auth}"/>
 					<Button
+						id="btnCreate"
 						tooltip="{i18n>pageMaster.footer.btnNew.tooltip}"
 						icon="sap-icon://add"
-						press="onNew"
+						press="onDialogCreateOpen"
 						visible="{account>/auth}"/>
 				</contentRight>
 			</Bar>
