@@ -20,7 +20,9 @@
     		<ColumnListItem>
 	       		<cells>
 	       			<ObjectIdentifier title="{account>description}"/>
-					<Text text="{account>count}" />
+					<ObjectStatus 
+					 	text="{=${account>count}>0?'+'+${account>count}:${account>count}}"
+						state="{=${account>count}>=0?'Success':'Warning'}" />
 	       			<Text text="{account>prettyDate}" 
 			            tooltip="{account>createDate}"/>
     			</cells>
