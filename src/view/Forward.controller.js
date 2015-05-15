@@ -25,10 +25,19 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			._getRouter().attachRouteMatched(this.onRouteMatched, this);
 	},
 	// ---------- actions
+	_getForwardId:function(view){
+		var data = view.getModel().getData();
+		var path = view.getBindingContext().getPath();
+		var index = path.split('/')[2];
+		var id = data['list'][index]['id'];
+		return id;
+	},
 	doActivate: function(evt){
-		//TODO: get forwardID from model!!!
 		var src = evt.getSource();
-		sap.m.MessageToast("called doActivate");
+		var id = this._getForwardId(this.getView());
+		
+		sap.m.MessageToast.show(id);
+		src.setBusy(true);
 		de.esconderse.util.Hektor.activate(id,
 			function(data){
 			    var msg = 'Success: ' + JSON.stringify(data);
@@ -42,9 +51,11 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		);
 	},
 	doDeactivate: function(evt){
-		//TODO: get forwardID from model!!!
 		var src = evt.getSource();
-		sap.m.MessageToast("called doDeactivate");
+		var id = this._getForwardId(this.getView());
+		
+		sap.m.MessageToast.show(id);
+		src.setBusy(true);
 		de.esconderse.util.Hektor.deactivate(id,
 			function(data){
 			    var msg = 'Success: ' + JSON.stringify(data);
@@ -60,8 +71,8 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 	doDelete: function(evt){
 		//TODO: get forwardID from model!!!
 		var src = evt.getSource();
-	
-		sap.m.MessageToast("called doDelete");
+		src.getModel().
+		sap.m.MessageToast.show("called doDelete");
 		de.esconderse.util.Hektor.delete(id,
 			function(data){
 			    var msg = 'Success: ' + JSON.stringify(data);
