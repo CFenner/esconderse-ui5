@@ -53,11 +53,6 @@
 					}"/>-->
 				</statuses>
 			</ObjectHeader>
-			<Input
-				value="{email}"
-				editable="false"
-				enabled="true"
-		        type="Text" />
 			<IconTabBar
 				id="idIconTabBar">
 				<items>
@@ -116,6 +111,48 @@
 			</IconTabBar>
 		</content>
 		<footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+    	    	<Button 
+    	    		id="btnRename"
+    	    		text="{i18n>pageForward.footer.btnRename}" 
+    	    		press="onDialogRenameOpen" 
+    	    		type="Emphasized" 
+    	    		icon="sap-icon://edit"><!-- 
+    	    		-->	
+<!--                    <layoutData>
+                    	<OverflowToolbarLayoutData moveToOverflow="false" />
+                    </layoutData>-->
+                </Button>
+<!--    	    	<ToggleButton 
+    	    		text="{i18n>pageForward.footer.btnDeactivate}" 
+    	    		press=""
+    	    		type="Reject" 
+    	    		icon="sap-icon://disconnected"/>-->
+    	    	<Button 
+    	    		visible="{= ${status} === 0}"
+    	    		id="btnActivate"
+    	    		text="{i18n>pageForward.footer.btnActivate}" 
+    	    		tooltip="{i18n>pageForward.footer.btnActivate}" 
+    	    		press="doActivate"
+    	    		type="Accept" 
+    	    		icon="sap-icon://connected"/>
+    	    	<Button 
+    	    		visible="{= ${status} === 1}"
+    	    		id="btnDeactivate"
+    	    		text="{i18n>pageForward.footer.btnDeactivate}"
+    	    		tooltip="{i18n>pageForward.footer.btnDeactivate}" 
+    	    		press="doDeactivate"
+    	    		type="Reject" 
+    	    		icon="sap-icon://disconnected"/>
+    	    	<OverflowToolbarButton 
+    	    		enabled="{= ${status} === 1}"
+    	    		id="btnDelete"
+    	    		text="{i18n>pageForward.footer.btnDelete}" 
+    	    		tooltip="{i18n>pageForward.footer.btnDelete}" 
+    	    		press="doDelete" 
+    	    		icon="sap-icon://delete"/>
+            </OverflowToolbar><!--
 			<Toolbar>
     	    	<ToolbarSpacer/>
     	    	<Button 
@@ -148,7 +185,7 @@
     	    		press="doDeactivate"
     	    		type="Reject" 
     	    		icon="sap-icon://disconnected"/>
-    	  	</Toolbar>
+    	  	</Toolbar>-->
     	</footer>
 	</Page>
 </mvc:View>
