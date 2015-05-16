@@ -3,9 +3,6 @@ jQuery.sap.require("de.esconderse.util.Hektor");
 
 sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 	registerListener: function(bus){
-		bus.subscribe("detail", "closeRename", function(that){
-			return function(){that._renameDialog.close();};
-		}(this));
 		bus.subscribe("detail", "enableRename", function(button){
 			return function(){button.setBusy(false);};
 		}(this.getView().byId("btnRename")));
@@ -86,28 +83,6 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			function(data){}
 		);
 	},
-	doRename: function(evt){
-		//TODO: get forwardID from model!!!
-		var src = evt.getSource(), 
-			input = sap.ui.getCore().byId("inputRename"), 
-			id = sap.ui.getCore().byId("textId").getText(),
-			value = input.getValue();
-		if(value.trim() === ""){
-			value = input.getPlaceholder();
-		}
-		de.esconderse.util.Hektor.rename(id, value,
-			function(data){
-			    var msg = 'Success: ' + JSON.stringify(data);
-    			sap.m.MessageToast.show(msg);
-				var bus = sap.ui.getCore().getEventBus();
-				bus.publish("detail", "closeRename");
-				bus.publish("detail", "enableRename");
-				bus.publish("master", "loadList");
-			},
-			function(data){}
-		);
-	},
-	
 	// ---------- navigation
 	onNavBack : function() {
 		// This is only relevant when running on phone devices
@@ -121,14 +96,63 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			forward: path.split("/")[1]
 		}, true);
 	},
-	onDialogRenameOpen: function(evt){
+	onConfirmDialog: function (evt) {
 		evt.getSource().setBusy(true);
-	    if(!this._renameDialog) {
-			this._renameDialog = sap.ui.xmlfragment("de.esconderse.view.fragment.DialogRename", this);
-			this.getView().addDependent(this._renameDialog);
-		}
-//		this.byId("renameDialog").byId("inputRename").setValue();
-	    this._renameDialog.open();
+		var that = this;
+		var dialog = new sap.m.Dialog({
+			title: '{i18n>dialogRename.title}',
+			type: 'Message',
+			content: [
+				new sap.m.Label({ 
+					text: '{i18n>dialogRename.labelDescription}', 
+					labelFor: 'inputRename'
+				}),
+				new sap.m.Input({ 
+					id: 'inputRename',
+					name: 'description',
+					placeholder:'{description}'
+				})
+			],
+			beginButton: new sap.m.Button({
+				text: '{i18n>dialogRename.btnCancel}',
+				press: function () {
+					dialog.close();
+				}
+			}),
+			endButton: new sap.m.Button({
+				text: '{i18n>dialogRename.btnRename}',
+				press: function (evt) {
+					var src = evt.getSource(),
+						value = sap.ui.getCore().byId("inputRename").getValue(),
+						id = that._getForwardId(that.getView());
+						
+					if(value.trim() === ""){
+						value = input.getPlaceholder();
+					}
+					de.esconderse.util.Hektor.rename(id, value,
+						function(data){
+						    var msg = 'Success: ' + JSON.stringify(data);
+		    				sap.m.MessageToast.show(msg);
+		    				
+							var bus = sap.ui.getCore().getEventBus();
+							//bus.publish("detail", "closeRename");
+							bus.publish("detail", "enableRename");
+							bus.publish("master", "loadList");
+						},
+						function(data){}
+					);
+					dialog.close();
+				}
+			}),
+			beforeClose: function(){
+				sap.ui.getCore().getEventBus().publish("detail", "enableRename");
+			},
+			afterClose: function() {
+				dialog.destroy();
+			}
+		});
+		this.getView().addDependent(dialog);
+		dialog.open();
 	},
 	// ---------- router
 	_getRouter: function(){
