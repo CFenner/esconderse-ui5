@@ -19,6 +19,11 @@
 								textAlign="Center"/>
 						</html:a>
 					</ScrollContainer>
+					<Button 
+						tooltip="{i18n>pageMaster.footer.btnLogout.tooltip}"
+						text="{i18n>pageMaster.footer.btnLogout}"
+						press="onLogout"
+						visible="{account>/auth}"/>
 		</headerContent>
 		<subHeader>
 			<Bar>
@@ -71,12 +76,12 @@
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
 						icon="sap-icon://home" 
-						press="onHome"/>
+						press="onHome"/><!--
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnLogout.tooltip}"
 						text="{i18n>pageMaster.footer.btnLogout}"
 						press="onLogout"
-						visible="{account>/auth}"/>
+						visible="{account>/auth}"/>-->
 				</contentLeft>
 				<contentMiddle>
 					<!--
