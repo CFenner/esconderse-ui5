@@ -30,10 +30,9 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		return id;
 	},
 	doActivate: function(evt){
-		var src = evt.getSource();
-		var id = this._getForwardId(this.getView());
+		var src = evt.getSource(),
+			id = this._getForwardId(this.getView());
 		
-		sap.m.MessageToast.show(id);
 		src.setBusy(true);
 		de.esconderse.util.Hektor.activate(id,
 			function(data){
@@ -48,10 +47,9 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		);
 	},
 	doDeactivate: function(evt){
-		var src = evt.getSource();
-		var id = this._getForwardId(this.getView());
+		var src = evt.getSource(),
+			id = this._getForwardId(this.getView());
 		
-		sap.m.MessageToast.show(id);
 		src.setBusy(true);
 		de.esconderse.util.Hektor.deactivate(id,
 			function(data){
@@ -66,10 +64,10 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		);
 	},
 	doDelete: function(evt){
-		//TODO: get forwardID from model!!!
-		var src = evt.getSource();
-		src.getModel().
-		sap.m.MessageToast.show("called doDelete");
+		//TODO: implement confirmation dialog!!
+		var src = evt.getSource(),
+			id = this._getForwardId(this.getView());
+			
 		de.esconderse.util.Hektor.delete(id,
 			function(data){
 			    var msg = 'Success: ' + JSON.stringify(data);
@@ -136,7 +134,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		    				
 							var bus = sap.ui.getCore().getEventBus();
 							//bus.publish("detail", "closeRename");
-							bus.publish("detail", "enableRename");
+							//bus.publish("detail", "enableRename");
 							bus.publish("master", "loadList");
 						},
 						function(data){}

@@ -4,13 +4,14 @@ jQuery.sap.require("de.esconderse.Router");
 sap.ui.core.UIComponent.extend("de.esconderse.Component", {
 	useMockData: false,
 	metadata : 'json',
-	register: function(bus){
+	registerListener: function(bus){
 		bus.subscribe("master", "loadList", function(that){
-			return function(){ that.doLoadList(); };
-		}(this));
-		bus.subscribe("master", "loadAccount", function(that){
-			return function(){ that.doLoadAccount(); };
-		}(this));
+ 			return function(){ that.doLoadList(); };
+ 		}(this));
+ 		bus.subscribe("master", "loadAccount", function(that){
+ 			return function(){ that.doLoadAccount(); };
+ 		}(this));
+		return this;
 	},
     init : function() {
         sap.ui.core.UIComponent.prototype.init.apply(this, arguments);
@@ -34,8 +35,8 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
         mailModel = new sap.ui.model.json.JSONModel();
 		mailModel.setDefaultBindingMode("OneWay");
     	mailModel.attachRequestCompleted({}, function(){
-		    var msg = 'Liste aktualisiert';
-			sap.m.MessageToast.show(msg);
+//		    var msg = 'Liste aktualisiert';
+//			sap.m.MessageToast.show(msg);
 			sap.ui.getCore().getEventBus().publish("master", "enableRefresh");
     	});
         accountModel = new sap.ui.model.json.JSONModel()
@@ -44,11 +45,11 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
         	.setModel(deviceModel, "device")
         	.setModel(accountModel, "account")
         	.setModel(resourceModel, "i18n")
-        	.doLoadList()
-        	.doLoadAccount()
-        	.register(sap.ui.getCore().getEventBus())
-			.getRouter()
-			.initialize();
+			.getRouter().initialize();
+			
+		this.registerListener(sap.ui.getCore().getEventBus())
+		this.doLoadList()
+			.doLoadAccount();
     },
     onRefreshFinish: function(){
     	this.getView();
@@ -63,7 +64,7 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
     doLoadAccount: function(){
     	var model = this.getModel("account");
     	model.loadData(
-			this.useMockData?"model/mailListNew.json":"https://esconderse.de/gateway.php?list"
+			this.useMockData?"model/account.json":"https://esconderse.de/account"
     	);
     	return this;
     }

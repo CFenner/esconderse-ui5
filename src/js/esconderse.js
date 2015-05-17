@@ -11,7 +11,9 @@ navigator.id.watch({
 				sap.ui.getCore().getEventBus().publish("master","loadAccount");
 			},
 			error: function(jqXHR, textStatus, errorThrown ){
-				alert("error " + textStatus + errorThrown); 
+				sap.m.MessageToast("Sie wurden abgemeldet!");
+				//TODO: call logout.php !!!!!!!!!
+				window.location = "https://esconderse.de/logout.php";
 			}, 
 			dataType: 'json'
 		});
