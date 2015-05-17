@@ -133,6 +133,61 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		this.byId("inputCreate").setValue();
 		this._createDialog.open();
 	},
+	onCreateDialog: function (evt) {
+		var src = evt.getSource(),
+			that = this,
+			dialog = new sap.m.Dialog({
+			title: '{i18n>dialogCreate.title}',
+			type: 'Message',
+			content: [
+				new sap.m.Label({ 
+					text: '{i18n>dialogCreate.labelDescription}', 
+					labelFor: 'inputCreate'
+				}),
+				new sap.m.Input({ 
+					id: 'inputCreate',
+					name: 'description',
+					placeholder:'{description}'
+				})
+			],
+			beginButton: new sap.m.Button({
+				text: '{i18n>dialogCreate.btnCancel}',
+				press: function () {
+					dialog.close();
+				}
+			}),
+			endButton: new sap.m.Button({
+				text: '{i18n>dialogCreate.btnCreate}',
+				press: function (evt) {
+					var src = evt.getSource(),
+						id = that._getForwardId(that.getView()),
+						value = sap.ui.getCore().byId("inputCreate").getValue();
+						
+					de.esconderse.util.Hektor.create(id, value,
+						function(data){
+						    var msg = 'Success: ' + JSON.stringify(data);
+		    				sap.m.MessageToast.show(msg);
+		    				
+							var bus = sap.ui.getCore().getEventBus();
+//							bus.publish("master", "enableCreate");
+							bus.publish("master", "loadList");
+						},
+						function(data){}
+					);
+					dialog.close();
+				}
+			}),
+			beforeClose: function(){
+				sap.ui.getCore().getEventBus().publish("master", "enableCreate");
+			},
+			afterClose: function() {
+				dialog.destroy();
+			}
+		});
+		src.setBusy(true);
+		this.getView().addDependent(dialog);
+		dialog.open();
+	},
 	// ---------- Router
 	_getRouter: function(){
 		return sap.ui.core.UIComponent.getRouterFor(this);
