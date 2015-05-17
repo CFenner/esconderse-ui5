@@ -118,17 +118,8 @@
     	    		text="{i18n>pageForward.footer.btnRename}" 
     	    		press="onRenameDialog" 
     	    		type="Emphasized" 
-    	    		icon="sap-icon://edit"><!-- 
-    	    		-->	
-<!--                    <layoutData>
-                    	<OverflowToolbarLayoutData moveToOverflow="false" />
-                    </layoutData>-->
+    	    		icon="sap-icon://edit">
                 </Button>
-<!--    	    	<ToggleButton 
-    	    		text="{i18n>pageForward.footer.btnDeactivate}" 
-    	    		press=""
-    	    		type="Reject" 
-    	    		icon="sap-icon://disconnected"/>-->
     	    	<Button 
     	    		visible="{= ${status} === 0}"
     	    		id="btnActivate"
@@ -138,7 +129,7 @@
     	    		type="Accept" 
     	    		icon="sap-icon://connected"/>
     	    	<Button 
-    	    		visible="{= ${status} === 1}"
+    	    		visible="{= ${status} === 0}"
     	    		id="btnDeactivate"
     	    		text="{i18n>pageForward.footer.btnDeactivate}"
     	    		tooltip="{i18n>pageForward.footer.btnDeactivate}" 
@@ -152,40 +143,7 @@
     	    		tooltip="{i18n>pageForward.footer.btnDelete}" 
     	    		press="doDelete" 
     	    		icon="sap-icon://delete"/>
-            </OverflowToolbar><!--
-			<Toolbar>
-    	    	<ToolbarSpacer/>
-    	    	<Button 
-    	    		id="btnRename"
-    	    		text="{i18n>pageForward.footer.btnRename}" 
-    	    		press="onDialogRenameOpen" 
-    	    		type="Emphasized" 
-    	    		icon="sap-icon://edit"/>
-    	    	<ToggleButton 
-    	    		text="{i18n>pageForward.footer.btnDeactivate}" 
-    	    		press=""
-    	    		type="Reject" 
-    	    		icon="sap-icon://disconnected"/>
-    	    	<Button 
-    	    		id="btnDelete"
-    	    		text="{i18n>pageForward.footer.btnRemove}" 
-    	    		press="doDelete"
-    	    		visible="false"
-    	    		type="Reject" 
-    	    		icon="sap-icon://delete"/>
-    	    	<Button 
-    	    		id="btnActivate"
-    	    		text="Activate" 
-    	    		press="doActivate"
-    	    		type="Accept" 
-    	    		icon="sap-icon://connected"/>
-    	    	<Button 
-    	    		id="btnDeactivate"
-    	    		text="Deactivate" 
-    	    		press="doDeactivate"
-    	    		type="Reject" 
-    	    		icon="sap-icon://disconnected"/>
-    	  	</Toolbar>-->
+            </OverflowToolbar>
     	</footer>
 	</Page>
 </mvc:View>
