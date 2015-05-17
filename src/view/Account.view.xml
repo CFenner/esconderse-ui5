@@ -37,7 +37,7 @@
 						tooltip="{i18n>pageAccount.tabGrant.tooltip}"
 						icon="sap-icon://key">
             			<core:Fragment fragmentName="de.esconderse.view.fragment.TabGrant" type="XML"/>
-            		</IconTabFilter>
+            		</IconTabFilter><!--
           			<IconTabFilter
 						visible="{account>/auth}"
             			icon="sap-icon://e-care">
@@ -59,7 +59,7 @@
             					<Text text="Account löschen?"/>
         					</form:content>
 						</form:SimpleForm> 
-          			</IconTabFilter>
+          			</IconTabFilter>-->
           			<IconTabFilter
           				key="about"
             			text="{i18n>pageAccount.tabAbout.title}"
