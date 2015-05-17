@@ -76,26 +76,9 @@
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
 						icon="sap-icon://home" 
-						press="onHome"/><!--
-					<Button 
-						tooltip="{i18n>pageMaster.footer.btnLogout.tooltip}"
-						text="{i18n>pageMaster.footer.btnLogout}"
-						press="onLogout"
-						visible="{account>/auth}"/>-->
+						press="onHome"/>
 				</contentLeft>
 				<contentMiddle>
-					<!--
-					<ScrollContainer visible="{account>/unauth}">
-						<html:a 
-							href="#" 
-							onclick="navigator.id.request();" 
-							class="persona-button dark">
-							<Text 
-								text="{i18n>pageMaster.footer.btnLogin}"
-								textAlign="Center"/>
-						</html:a>
-					</ScrollContainer>
-					-->
 				</contentMiddle>
 				<contentRight>
 					<Button 
@@ -112,7 +95,7 @@
 						id="btnCreate"
 						tooltip="{i18n>pageMaster.footer.btnNew.tooltip}"
 						icon="sap-icon://add"
-						press="onDialogCreateOpen"
+						press="onCreateDialog"
 						visible="{account>/auth}"/>
 				</contentRight>
 			</Bar>
