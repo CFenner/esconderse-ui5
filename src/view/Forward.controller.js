@@ -63,24 +63,6 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			function(data){}
 		);
 	},
-	doDelete: function(evt){
-		//TODO: implement confirmation dialog!!
-		var src = evt.getSource(),
-			id = this._getForwardId(this.getView());
-			
-		de.esconderse.util.Hektor.delete(id,
-			function(data){
-			    var msg = 'Success: ' + JSON.stringify(data);
-    			sap.m.MessageToast.show(msg);
-    			
-				var bus = sap.ui.getCore().getEventBus();
-				//TODO: move to first item, automatic via List?
-				bus.publish("detail", "enableDelete");
-				bus.publish("master", "loadList");
-			},
-			function(data){}
-		);
-	},
 	// ---------- navigation
 	onNavBack : function() {
 		// This is only relevant when running on phone devices
@@ -120,14 +102,13 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			endButton: new sap.m.Button({
 				text: '{i18n>dialogRename.btnRename}',
 				press: function (evt) {
-					var src = evt.getSource(),
-						value = sap.ui.getCore().byId("inputRename").getValue(),
+					var name = sap.ui.getCore().byId("inputRename").getValue(),
 						id = that._getForwardId(that.getView());
 						
-					if(value.trim() === ""){
-						value = input.getPlaceholder();
+					if(name.trim() === ""){
+						name = input.getPlaceholder();
 					}
-					de.esconderse.util.Hektor.rename(id, value,
+					de.esconderse.util.Hektor.rename(id, name,
 						function(data){
 						    var msg = 'Success: ' + JSON.stringify(data);
 		    				sap.m.MessageToast.show(msg);
@@ -149,6 +130,55 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 				dialog.destroy();
 			}
 		});
+		this.getView().addDependent(dialog);
+		dialog.open();
+	},
+	onDeleteDialog: function (evt) {
+		var src = evt.getSource(),
+			that = this,
+			dialog = new sap.m.Dialog({
+			title: '{i18n>dialogDelete.title}',
+			type: 'Message',
+			content: [
+				new sap.m.Text({ 
+					text: '{i18n>dialogDelete.textConfirm}'
+				})
+			],
+			beginButton: new sap.m.Button({
+				text: '{i18n>dialogDelete.btnCancel}',
+				press: function () {
+					dialog.close();
+				}
+			}),
+			endButton: new sap.m.Button({
+				text: '{i18n>dialogDelete.btnDelete}',
+				press: function(evt){
+					//TODO: implement confirmation dialog!!
+					var id = that._getForwardId(that.getView());
+				
+					de.esconderse.util.Hektor.delete(id,
+						function(data){
+						    var msg = 'Success: ' + JSON.stringify(data);
+    						sap.m.MessageToast.show(msg);
+    			
+							var bus = sap.ui.getCore().getEventBus();
+							//TODO: move to first item, automatic via List?
+							bus.publish("detail", "enableDelete");
+							bus.publish("master", "loadList");
+						},
+						function(data){}
+					);
+					dialog.close();
+				}
+			}),
+			beforeClose: function(){
+				sap.ui.getCore().getEventBus().publish("detail", "enableDelete");
+			},
+			afterClose: function() {
+				dialog.destroy();
+			}
+		});
+		src.setBusy(true);
 		this.getView().addDependent(dialog);
 		dialog.open();
 	},
