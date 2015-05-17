@@ -13,11 +13,11 @@
 				<attributes>
 					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
 				</attributes>
-			</ObjectHeader>
+			</ObjectHeader><!--
           <Label text="private Email Adresse" />
           <Text text="{account>/email}" />
           <Label text="Angelegt" />
-          <Text text="{account>/prettyDate}" />
+          <Text text="{account>/prettyDate}" />-->
         </form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>
