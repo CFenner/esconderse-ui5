@@ -20,8 +20,8 @@
 						</html:a>
 					</ScrollContainer>
 					<Button 
-						tooltip="{i18n>pageMaster.footer.btnLogout.tooltip}"
-						text="{i18n>pageMaster.footer.btnLogout}"
+						icon="sap-icon://log"
+						tooltip="{i18n>pageMaster.header.btnLogout.tooltip}"
 						press="onLogout"
 						visible="{account>/auth}"/>
 		</headerContent>
