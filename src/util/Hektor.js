@@ -2,11 +2,9 @@ jQuery.sap.declare("de.esconderse.util.Hektor");
 
 de.esconderse.util.Hektor = {
 	create: function(name, state, sucCallback, errCallback){
-		alert(name + "  " + state);
-		/*
-		this._ajax("create&name="+name+"&state="+state, 
-				sucCallback, errCallback);
-		*/
+//		alert(name + "  " + state);
+		this._ajax("create&name="+name,
+				sucCallback, errCallback);//+"&state="+state, 
 	},
 	rename: function(id, name, sucCallback, errCallback){
 		this._ajax("rename&id="+id+"&name="+name, 
