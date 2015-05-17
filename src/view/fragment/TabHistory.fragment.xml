@@ -30,7 +30,7 @@
 				<items>
 					<ColumnListItem>
 						<cells>
-							<ObjectIdentifier title="{msg}, {value}"/>
+							<ObjectIdentifier title="{=${value}?${msg}+': \''+${value}+'\'':${msg}}"/>
 							<Text
 								text="{
 									path: 'createDate',
@@ -40,7 +40,7 @@
             			</cells>
         			</ColumnListItem>
 				</items>
-    		</Table>
+    		</Table><!--
        	</form:content>
-	</form:SimpleForm>
+	</form:SimpleForm>-->
 </core:FragmentDefinition>
