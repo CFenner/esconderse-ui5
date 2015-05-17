@@ -116,7 +116,7 @@
     	    	<Button 
     	    		id="btnRename"
     	    		text="{i18n>pageForward.footer.btnRename}" 
-    	    		press="onConfirmDialog" 
+    	    		press="onRenameDialog" 
     	    		type="Emphasized" 
     	    		icon="sap-icon://edit"><!-- 
     	    		-->	

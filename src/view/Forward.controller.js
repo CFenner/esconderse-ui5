@@ -96,7 +96,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			forward: path.split("/")[1]
 		}, true);
 	},
-	onConfirmDialog: function (evt) {
+	onRenameDialog: function (evt) {
 		evt.getSource().setBusy(true);
 		var that = this;
 		var dialog = new sap.m.Dialog({
