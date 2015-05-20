@@ -14,13 +14,22 @@
 	box-shadow:				@shadow;
 }
 
+.gradient(@bg, @start, @end, @type:top){
+	background: @bg;
+	background: -moz-linear-gradient(@type, @start, @end);
+	background: -ms-linear-gradient(@type, @start, @end);
+	background: -o-linear-gradient(@type, @start, @end);
+	background: -webkit-linear-gradient(@type, @start, @end);
+	background: linear-gradient(@type, @start, @end);/* flipped for updated spec  ?!?*/
+}
+
 .position(@top, @right, @bottom, @left, @z){
-  position: absolute;
-  left: @left;
-  top: @top;
-  bottom: @bottom;
-  right: @right;
-  z-index: @z;
+	position: absolute;
+	left: @left;
+	top: @top;
+	bottom: @bottom;
+	right: @right;
+	z-index: @z;
 }
 
 .size(@width, @height){

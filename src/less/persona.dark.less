@@ -1,35 +1,32 @@
 /* ========================================================
  *    Dark button 
  * ===================================================== */
+ 
+@persona-bg: #3c3c3c;
+@persona-bg-start: #606060;
+@persona-bg-end: @persona-bg;
+
+@persona-bg-hover: #2d2d2d;
+@persona-bg-hover-start: #484848;
+@persona-bg-hover-end: @persona-bg-hover;
+
+@persona-bg-before: #d34f2d;
+@persona-bg-before-start: #ebac45;
+@persona-bg-before-end: @persona-bg-before;
+
+@persona-bg-span-before: @persona-bg-before;
+@persona-bg-span-before-start: @persona-bg-before-start;
+@persona-bg-span-before-end: @persona-bg-span-before;
+ 
 .persona-button.dark{
-  background: #3c3c3c;
-  background: -moz-linear-gradient(top, #606060, #3c3c3c);
-  background: -ms-linear-gradient(top, #606060, #3c3c3c);
-  background: -o-linear-gradient(top, #606060, #3c3c3c);
-  background: -webkit-linear-gradient(top, #606060, #3c3c3c);
-  background: linear-gradient(top, #606060, #3c3c3c);
+	.gradient(@persona-bg, @persona-bg-start, @persona-bg-end);
 }
 .persona-button.dark:hover{
-  background: #2d2d2d;
-  background: -moz-linear-gradient(top, #484848, #2d2d2d);
-  background: -ms-linear-gradient(top, #484848, #2d2d2d);
-  background: -o-linear-gradient(top, #484848, #2d2d2d);
-  background: -webkit-linear-gradient(top, #484848, #2d2d2d);
-  background: linear-gradient(top, #484848, #2d2d2d);
+	.gradient(@persona-bg-hover, @persona-bg-hover-start, @persona-bg-hover-end);
 }
 .persona-button.dark span:before{ /* Icon BG */
-  background: #d34f2d;
-  background: -moz-linear-gradient(top, #ebac45, #d34f2d);
-  background: -ms-linear-gradient(top, #ebac45, #d34f2d);
-  background: -o-linear-gradient(top, #ebac45, #d34f2d);
-  background: -webkit-linear-gradient(top, #ebac45, #d34f2d);
-  background: linear-gradient(top, #ebac45, #d34f2d);
+	.gradient(@persona-bg-span-before, @persona-bg-span-before-start, @persona-bg-span-before-end);
 }
 .persona-button.dark:before{ /* Triangle */
-  background: #d34f2d;
-  background: -moz-linear-gradient(-45deg, #ebac45, #d34f2d);
-  background: -ms-linear-gradient(-45deg, #ebac45, #d34f2d);
-  background: -o-linear-gradient(-45deg, #ebac45, #d34f2d);
-  background: -webkit-linear-gradient(-45deg, #ebac45, #d34f2d);
-  background: linear-gradient(-45deg, #d34f2d, #ebac45); /* flipped for updated spec */
+	.gradient(@persona-bg-before, @persona-bg-before-start, @persona-bg-before-end, -45deg);
 }
