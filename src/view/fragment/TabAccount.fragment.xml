@@ -8,10 +8,12 @@
         maxContainerCols="2"
         editable="false">
         <form:content>
-        	<core:Title text="Basis-Daten"/>
+        	<core:Title text="{i18n>pageAccount.tabAccount.formBasic.title}"/>
 			<ObjectHeader title="{account>/email}">
 				<attributes>
-					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
+					<ObjectAttribute 
+						title="{i18n>pageAccount.tabAccount.formBasic.attrCreated}" 
+						text="{account>/prettyDate}" />
 				</attributes>
 			</ObjectHeader><!--
           <Label text="private Email Adresse" />
