@@ -1,4 +1,5 @@
 jQuery.sap.require("de.esconderse.util.Formatter");
+jQuery.sap.require("de.esconderse.util.Hektor");
 
 sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 	registerListener: function(bus){
@@ -160,16 +161,15 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 				text: '{i18n>dialogCreate.btnCreate}',
 				press: function (evt) {
 					var src = evt.getSource(),
-						id = that._getForwardId(that.getView()),
-						value = sap.ui.getCore().byId("inputCreate").getValue();
+//						id = that._getForwardId(that.getView()),
+						name = sap.ui.getCore().byId("inputCreate").getValue();
 						
-					de.esconderse.util.Hektor.create(id, value,
+					de.esconderse.util.Hektor.create(name, 0,
 						function(data){
 						    var msg = 'Success: ' + JSON.stringify(data);
 		    				sap.m.MessageToast.show(msg);
 		    				
 							var bus = sap.ui.getCore().getEventBus();
-//							bus.publish("master", "enableCreate");
 							bus.publish("master", "loadList");
 						},
 						function(data){}
