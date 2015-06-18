@@ -35,8 +35,6 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
         mailModel = new sap.ui.model.json.JSONModel();
 		mailModel.setDefaultBindingMode("OneWay");
     	mailModel.attachRequestCompleted({}, function(){
-//		    var msg = 'Liste aktualisiert';
-//			sap.m.MessageToast.show(msg);
 			sap.ui.getCore().getEventBus().publish("master", "enableRefresh");
     	});
         accountModel = new sap.ui.model.json.JSONModel()

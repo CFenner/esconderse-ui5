@@ -8,17 +8,65 @@
         maxContainerCols="2"
         editable="false">
         <form:content>
-        	<core:Title text="Behalte die Kontrolle über deine Email Adresse"/>
-        	<Text text="Mit Esconderse bestimmst du, wer deine Email Adresse nutzen kann und möchtest."/>
+        	<core:Title text="{i18n>pageAccount.tabAbout.paragraph1.title}"/>
+        	<Text text="{i18n>pageAccount.tabAbout.paragraph1.text}"/>
+        </form:content>
+        <form:content>
+        	<core:Title text="{i18n>pageAccount.tabAbout.paragraph2.title}"/>
+        	<Text text="{i18n>pageAccount.tabAbout.paragraph2.text}"/>
+        </form:content>
+        <form:content>
+        	<core:Title text="{i18n>pageAccount.tabAbout.paragraph3.title}"/>
+        	<Text text="{i18n>pageAccount.tabAbout.paragraph3.text}"/>
         </form:content>
     	<form:content>
-        	<core:Title text="Wie funktioniert das?"/>
-    		<Text text="Mit Weiterleitungen, du gibst nicht mehr deine richtige Email Adresse weiter, sonder einen Verweis auf diese. Mit Esconderse kannst du Weiterleitungen auf deine registrierte Email Adresse anlegen und die Übersicht darüber behalten."/>
+        	<core:Title text="{i18n>pageAccount.tabAbout.paragraph4.title}"/>
+    		<Text text="{i18n>pageAccount.tabAbout.paragraph4.text}"/>
        	</form:content>
       	<form:content>
-     		<core:Title text="Was, wenn ich unerwünschte Emails erhalte?"/>
+     		<core:Title text="{i18n>pageAccount.tabAbout.paragraph5.title}"/>
 			<core:HTML content='&lt;div class="mig"&gt;&lt;span&gt;made&lt;/span&gt;&lt;span&gt;in&lt;/span&gt;&lt;span&gt;germany&lt;/span&gt;&lt;/div&gt;' />
-       		<Text text="Wenn du möchtest, kannst du jeder Zeit die Weiterleitungen auf deine registrierte Email Adresse deaktivieren und so die Mail Flut stoppen."/>
+       		<Text text="{i18n>pageAccount.tabAbout.paragraph5.text}"/>
+    <core:Icon
+      src="sap-icon://chain-link"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://arobase"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://disconnected"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://email"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://hide"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://menu2"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://paging"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://shield"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://umbrella"
+      class="size2"
+      color="#64E4CE" />
+    <core:Icon
+      src="sap-icon://business-object-explorer"
+      class="size2"
+      color="#64E4CE" />
        	</form:content>
 	</form:SimpleForm> 
 </core:FragmentDefinition>

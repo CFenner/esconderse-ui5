@@ -29,6 +29,11 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		var id = data['list'][index]['id'];
 		return id;
 	},
+	doSelect: function(evt){
+		var src = evt.getSource();
+		
+		sap.m.MessageToast.show(""+src);
+	},
 	doActivate: function(evt){
 		var src = evt.getSource(),
 			id = this._getForwardId(this.getView());

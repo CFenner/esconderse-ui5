@@ -10,11 +10,7 @@
     	},
 		"rootView" : "de.esconderse.view.App",
 		"config" : {
-            "resourceBundle" : "i18n/messageBundle.properties",
-            "serviceConfig" : {
-                "name" : "Northwind",
-                "serviceUrl" : "http://services.odata.org/V2/(S(sapuidemotdg))/OData/OData.svc/"
-            }
+            "resourceBundle" : "i18n/messageBundle.properties"
         },
         "routing" : {
 			"config" : {
