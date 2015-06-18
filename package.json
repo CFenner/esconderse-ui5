@@ -1,0 +1,19 @@
+{
+  "name": "esconderse-ui5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CFenner/esconderse-ui5.git"
+  },
+  "author": "cfenner",
+  "license": "Apache License Version 2.0",
+  "bugs": {
+    "url": "https://github.com/CFenner/esconderse-ui5/issues"
+  },
+  "homepage": "https://github.com/CFenner/esconderse-ui5#readme"
+}
