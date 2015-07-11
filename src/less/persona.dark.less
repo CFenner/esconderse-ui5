@@ -1,3 +1,5 @@
+@import "palette";
+@import "persona";
 /* ========================================================
  *    Dark button 
  * ===================================================== */
@@ -18,15 +20,15 @@
 @persona-bg-span-before-start: @persona-bg-before-start;
 @persona-bg-span-before-end: @persona-bg-span-before;
  
-.persona-button.dark{
+.dark{
 	.gradient(@persona-bg, @persona-bg-start, @persona-bg-end);
 }
-.persona-button.dark:hover{
+.dark:hover{
 	.gradient(@persona-bg-hover, @persona-bg-hover-start, @persona-bg-hover-end);
 }
-.persona-button.dark span:before{ /* Icon BG */
+.dark span:before{ /* Icon BG */
 	.gradient(@persona-bg-span-before, @persona-bg-span-before-start, @persona-bg-span-before-end);
 }
-.persona-button.dark:before{ /* Triangle */
+.dark:before{ /* Triangle */
 	.gradient(@persona-bg-before, @persona-bg-before-start, @persona-bg-before-end, -45deg);
 }

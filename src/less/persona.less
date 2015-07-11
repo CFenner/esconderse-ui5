@@ -1,16 +1,17 @@
+@import "palette";
 .border-radius(@radius){
+	-webkit-border-radius:	@radius;
 	-moz-border-radius: 	@radius;
 	-ms-border-radius:		@radius;
 	-o-border-radius:		@radius;
-	-webkit-border-radius:	@radius;
 	border-radius: 			@radius;
 }
 
 .box-shadow(@shadow){
+	-webkit-box-shadow:		@shadow;
 	-moz-box-shadow:		@shadow;
 	-ms-box-shadow:			@shadow;
 	-o-box-shadow:			@shadow;
-	-webkit-box-shadow:		@shadow;
 	box-shadow:				@shadow;
 }
 
@@ -20,16 +21,25 @@
 	background: -ms-linear-gradient(@type, @start, @end);
 	background: -o-linear-gradient(@type, @start, @end);
 	background: -webkit-linear-gradient(@type, @start, @end);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @start), color-stop(100%, @end));
 	background: linear-gradient(@type, @start, @end);/* flipped for updated spec  ?!?*/
 }
 
-.position(@top, @right, @bottom, @left, @z){
+.position(@t, @r, @b, @l, @z){
 	position: absolute;
-	left: @left;
-	top: @top;
-	bottom: @bottom;
-	right: @right;
+	left: @l;
+	top: @t;
+	bottom: @b;
+	right: @r;
 	z-index: @z;
+}
+
+.rotate(@deg:45deg){
+	-webkit-transform:	rotate(@deg);
+	-moz-transform:		rotate(@deg);
+	-ms-transform:		rotate(@deg);
+	-o-transform:		rotate(@deg);
+	transform:			rotate(@deg);
 }
 
 .size(@width, @height){
@@ -64,7 +74,7 @@
 	span:after{
 		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAA4klEQVR42o2RWaqEMBRE3YaCiDjPwQGcd9CrysLv4wTyoLFD90dxqbp1EgdPRB7Kskznea6Zn/aPoKoqUUrJOI5m4l2QBfSyLHKep1zXZSae3An1fS/7vst931bGkzuhaZrsLVbGkzuheZ7lOI6HyJ2QUkqv6yrbtv0LT+6E7G0UrfBfP3lZlpoXH4ZBmHgn5Pv+KwxDfqp0XQdgJp6c/RsUBIGOokiSJDE/s21bACbe5Ozp0TdAHMdSFIXUdS1N01C2wpObPT36HifwCJzI0iX29Oh7XP0E3CB9L01TzM+i/wePv4ZE5RtAngAAAABJRU5ErkJggg==) 10px center no-repeat;
 		.size(31px, auto);
-		.position(0, none, 0, -3px, 10);
+		.position(0, 0, 0, -3px, 10);
 	}
 }
 
@@ -77,7 +87,7 @@
 /*  Icon background */
 .persona-button span:before{
 	.size(20px, 100%);
-	.position(0, none, 0, 0, 1);
+	.position(0, 0, 0, 0, 1);
 	.border-radius(@border-radius 0 0 @border-radius);
 }
 
@@ -85,14 +95,9 @@
 .persona-button:before{
 	margin-top: -13px;
 	.size(26px, 26px);
-	.position(50%, none, none, 2px, 0);
+	.position(50%, 0, 0, 2px, 0);
 	.box-shadow(1px -1px 1px rgba(0,0,0,0.1));
-
-  -moz-transform:   rotate(45deg);
-  -ms-transform:     rotate(45deg);
-  -o-transform:     rotate(45deg);
-  -webkit-transform:   rotate(45deg);
-  transform:       rotate(45deg);
+	.rotate();
 }
 
 /* Inset shadow (required here because the icon background clips it when on the `a` element) */

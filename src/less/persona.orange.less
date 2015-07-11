@@ -1,3 +1,5 @@
+@import "palette";
+@import "persona";
 /* ========================================================
  *    Orange button 
  * ===================================================== */
@@ -16,17 +18,17 @@
 
 @persona-bg-span-before: @persona-bg-before;
 @persona-bg-span-before-start: @persona-bg-before-start;
-@persona-bg-span-before-end: @persona-bg-span-before-end;
+@persona-bg-span-before-end: @persona-bg-before-end;
  
-.persona-button.orange{
+.orange{
 	.gradient(@persona-bg, @persona-bg-start, @persona-bg-end);
 }
-.persona-button.orange:hover{
+.orange:hover{
 	.gradient(@persona-bg-hover, @persona-bg-hover-start, @persona-bg-hover-end);
 }
-.persona-button.orange span:before{ /* Icon BG */
+.orange span:before{ /* Icon BG */
 	.gradient(@persona-bg-span-before, @persona-bg-span-before-start, @persona-bg-span-before-end);
 }
-.persona-button.orange:before{ /* Triangle */
+.orange:before{ /* Triangle */
 	.gradient(@persona-bg-before, @persona-bg-before-start, @persona-bg-before-end, -45deg);
 }
