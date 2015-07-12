@@ -5,16 +5,16 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 	registerListener: function(bus){
 		bus.subscribe("detail", "enableRename", function(button){
 			return function(){button.setBusy(false);};
-		}(this.getView().byId("btnRename")));
+		}((this.getView()).byId("btnRename")));
 		bus.subscribe("detail", "enableActivate", function(button){
 			return function(){button.setBusy(false);};
-		}(this.getView().byId("btnActivate")));
+		}((this.getView()).byId("btnActivate")));
 		bus.subscribe("detail", "enableDeactivate", function(button){
 			return function(){button.setBusy(false);};
-		}(this.getView().byId("btnDeactivate")));
+		}((this.getView()).byId("btnDeactivate")));
 		bus.subscribe("detail", "enableDelete", function(button){
 			return function(){button.setBusy(false);};
-		}(this.getView().byId("btnDelete")));
+		}((this.getView()).byId("btnDelete")));
 		return this;
 	},
 	onInit : function() {
@@ -26,7 +26,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		var data = view.getModel().getData();
 		var path = view.getBindingContext().getPath();
 		var index = path.split('/')[2];
-		var id = data['list'][index]['id'];
+		var id = data.list[index].id;
 		return id;
 	},
 	doSelect: function(evt){
@@ -48,7 +48,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 				bus.publish("detail", "enableActivate");
 				bus.publish("master", "loadList");
 			},
-			function(data){}
+			function(/*data*/){}
 		);
 	},
 	doDeactivate: function(evt){
@@ -57,7 +57,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 		
 		src.setBusy(true);
 		de.esconderse.util.Hektor.deactivate(id,
-			function(data){
+			function(/*data*/){
 			    var msg = 'Success: ' + JSON.stringify(data);
     			sap.m.MessageToast.show(msg);
     			
@@ -106,7 +106,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			}),
 			endButton: new sap.m.Button({
 				text: '{i18n>dialogRename.btnRename}',
-				press: function (evt) {
+				press: function (/*evt*/) {
 					var name = sap.ui.getCore().byId("inputRename").getValue(),
 						id = that._getForwardId(that.getView());
 						
@@ -123,7 +123,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 							//bus.publish("detail", "enableRename");
 							bus.publish("master", "loadList");
 						},
-						function(data){}
+						function(/*data*/){}
 					);
 					dialog.close();
 				}
@@ -157,7 +157,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 			}),
 			endButton: new sap.m.Button({
 				text: '{i18n>dialogDelete.btnDelete}',
-				press: function(evt){
+				press: function(/*evt*/){
 					//TODO: implement confirmation dialog!!
 					var id = that._getForwardId(that.getView());
 				
@@ -171,7 +171,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Forward", {
 							bus.publish("detail", "enableDelete");
 							bus.publish("master", "loadList");
 						},
-						function(data){}
+						function(/*data*/){}
 					);
 					dialog.close();
 				}
