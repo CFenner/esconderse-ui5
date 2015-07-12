@@ -11,7 +11,7 @@ navigator.id.watch({
 				sap.ui.getCore().getEventBus().publish("master","loadAccount");
 			},
 			error: function(jqXHR, textStatus, errorThrown ){
-				sap.m.MessageToast("Sie wurden abgemeldet!");
+				sap.m.MessageToast.show("Sie wurden abgemeldet!");
 				//TODO: call logout.php !!!!!!!!!
 				window.location = "https://esconderse.de/logout.php";
 			}, 
@@ -19,7 +19,7 @@ navigator.id.watch({
 		});
 	},
 	onlogout: function () {
-		sap.m.MessageToast("Sie wurden abgemeldet!");
+		sap.m.MessageToast.show("Sie wurden abgemeldet!");
 		//TODO: call logout.php !!!!!!!!!
 		window.location = "https://esconderse.de/logout.php";
 	}
