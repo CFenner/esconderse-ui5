@@ -30,4 +30,4 @@ de.esconderse.util.Hektor = {
 			success: sucCallback, error: errCallback
 		});
 	}
-}
+};

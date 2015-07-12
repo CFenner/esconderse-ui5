@@ -8,12 +8,12 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 				control.setBusy(false);
 				control.hide();
 			};
-		}(this.getView().byId("pullToRefresh")));
+		}((this.getView()).byId("pullToRefresh")));
 		bus.subscribe("master", "enableCreate", function(control){
 			return function(){
 				control.setBusy(false);
 			};
-		}(this.getView().byId("btnCreate")));
+		}((this.getView()).byId("btnCreate")));
 		return this;
 	},
 	onInit : function() {
@@ -75,14 +75,14 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		bus.publish("master", "loadList");	
 	},
 	onForward : function(evt, listItem, listItemArray, isSelected) {
-		var listItem = evt.getParameter("listItem") || evt.getSource(), 
-			isSelected = evt.getParameter("selected");
+		listItem = evt.getParameter("listItem") || evt.getSource();
+		//isSelected = evt.getParameter("selected");
 		// Get the list item, either from the listItem parameter or from the event's
 		// source itself (will depend on the device-dependent mode).
 		this.selectForward(listItem);
 	},
 	// ---------- footer
-	onHome: function(evt){
+	onHome: function(/*evt*/){
 		// If we're on a phone, include nav in history; if not, don't.
 		var bReplace = jQuery.device.is.phone ? false : true;
 		this._getRouter().navTo("account", {
@@ -90,7 +90,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 			forward: null
 		}, bReplace);
 	},
-	onLogout: function(evt){
+	onLogout: function(/*evt*/){
 		window.location = "https://esconderse.de/logout.php";
 	},
 	onMenuUsage: function(evt){
@@ -107,7 +107,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 		}
 		this._filterSheet.openBy(evt.getSource());
 	},
-	onFilterReset: function(evt){ this.setFilter(false); },
+	onFilterReset: function(/*evt*/){ this.setFilter(false); },
 	onFilterActive: function(evt){ 
 //		var src = evt.getSource();
 		//alert(src.getData("data-status"));
@@ -172,7 +172,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.Master", {
 							var bus = sap.ui.getCore().getEventBus();
 							bus.publish("master", "loadList");
 						},
-						function(data){}
+						function(/*data*/){}
 					);
 					dialog.close();
 				}

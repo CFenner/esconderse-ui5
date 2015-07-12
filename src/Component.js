@@ -5,12 +5,12 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
     useMockData: false,
     metadata: "json",
     registerListener: function(bus){
-        bus.subscribe("master", "loadList", function(that){
-             return function(){ that.doLoadList(); };
-         }(this));
-         bus.subscribe("master", "loadAccount", function(that){
-             return function(){ that.doLoadAccount(); };
-         }(this));
+        bus.subscribe("master", "loadList", (function(that){
+            return function(){ that.doLoadList(); };
+        }(this)));
+        bus.subscribe("master", "loadAccount", (function(that){
+            return function(){ that.doLoadAccount(); };
+        }(this)));
         return this;
     },
     init: function() {

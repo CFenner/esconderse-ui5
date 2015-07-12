@@ -5,7 +5,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.fragment.DialogCreate", {
 	
 	},
 */	// ---------- actions
-	onCreate: function(evt){
+	onCreate: function(/*evt*/){
 		var description = this.getView().byId("createDescription").getValue(),
 			state = this.getView().byId("createState").getState();
 		de.esconderse.util.Hektor.create(description, state, 
@@ -16,7 +16,7 @@ sap.ui.core.mvc.Controller.extend("de.esconderse.view.fragment.DialogCreate", {
 				
 			});
 	},
-	onCancel: function(evt){
+	onCancel: function(/*evt*/){
 		var core = sap.ui.getCore();
 		core.byId("dialogCreate").close();
 		core.getEventBus().publish({}, "master", "enableCreate");
