@@ -52,6 +52,7 @@
 						}"/>
 				</statuses>
 			</ObjectHeader>
+					<Input editable="false" enabled="true" value="{email}" type="Text" width="300px"/>
 			<IconTabBar
 				id="idIconTabBar">
 				<items>
