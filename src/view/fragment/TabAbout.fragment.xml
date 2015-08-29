@@ -27,7 +27,7 @@
      		<core:Title text="{i18n>pageAccount.tabAbout.paragraph5.title}"/>
 			<core:HTML content='&lt;div class="mig"&gt;&lt;span&gt;made&lt;/span&gt;&lt;span&gt;in&lt;/span&gt;&lt;span&gt;germany&lt;/span&gt;&lt;/div&gt;' />
        		<Text text="{i18n>pageAccount.tabAbout.paragraph5.text}"/>
-    <core:Icon
+    <!--<core:Icon
       src="sap-icon://chain-link"
       class="size2"
       color="#64E4CE" />
@@ -66,7 +66,7 @@
     <core:Icon
       src="sap-icon://business-object-explorer"
       class="size2"
-      color="#64E4CE" />
+      color="#64E4CE" />-->
        	</form:content>
 	</form:SimpleForm> 
 </core:FragmentDefinition>
