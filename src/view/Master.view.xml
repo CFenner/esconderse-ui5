@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="de.esconderse.view.Master"
+	controllerName="de.esconderse.controller.Master"
 	displayBlock="true"
 	xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc"
@@ -8,7 +8,31 @@
 	xmlns="sap.m">
 	<Page
 		title="{i18n>pageMaster.title}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button 
+						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
+						icon="sap-icon://customer" 
+						press="onHome"/>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>pageMaster.title}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button 
+						icon="sap-icon://sys-cancel"
+						tooltip="{i18n>pageMaster.header.btnLogout.tooltip}"
+						press="onLogout"
+						visible="{account>/auth}"/>
+				</contentRight>
+			</Bar>
+		</customHeader><!--
 		<headerContent>
+					<Button 
+						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
+						icon="sap-icon://home" 
+						press="onHome"/>
 					<ScrollContainer visible="{account>/unauth}">
 						<html:a 
 							href="#" 
@@ -24,7 +48,7 @@
 						tooltip="{i18n>pageMaster.header.btnLogout.tooltip}"
 						press="onLogout"
 						visible="{account>/auth}"/>
-		</headerContent>
+		</headerContent>-->
 		<subHeader>
 			<Bar>
 				<contentMiddle>
@@ -72,20 +96,20 @@
 		</content>
 		<footer>
 			<Bar>
-				<contentLeft>
+				<contentLeft><!--
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
 						icon="sap-icon://home" 
-						press="onHome"/>
+						press="onHome"/>-->
 				</contentLeft>
 				<contentMiddle>
 				</contentMiddle>
-				<contentRight>
+				<contentRight><!--
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnUsage.tooltip}"
 						icon="sap-icon://bar-chart" 
 						press="onMenuUsage"
-						visible="{account>/auth}"/>
+						visible="{account>/auth}"/>-->
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnFilter.tooltip}"
 						icon="sap-icon://filter" 
