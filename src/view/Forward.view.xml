@@ -65,7 +65,8 @@
 					<IconTabFilter
 						text="{i18n>pageForward.tabTags.title}"
 						tooltip="{i18n>pageForward.tabTags.tooltip}"
-						icon="sap-icon://tags">
+						icon="sap-icon://tags"
+						visible="false">
 						<content>	
 							<Tokenizer width="100%" editable="true" tokens="{tags}">
 								<Token text="{name}" editable="false" />
