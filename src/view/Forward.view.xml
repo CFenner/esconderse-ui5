@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="de.esconderse.view.Forward"
+	controllerName="de.esconderse.controller.Forward"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
