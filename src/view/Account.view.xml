@@ -3,18 +3,35 @@
 	xmlns="sap.m" 
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:l="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form">
 	<Page
-		showNavButton="{device>/isPhone}"
+		showNavButton="true"
 		navButtonPress="onNavBack"
 		class="sapUiFioriObjectPage"
-		title="{i18n>detailTitle}">
+		title="{i18n>pageAccount.title}">
 		<content><!--
 			<ObjectHeader title="{account>/email}">
 				<attributes>
 					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
 				</attributes>
 			</ObjectHeader>-->
+			
+  			<l:Grid class="sapUiSmallMarginTop" position="Center">
+    			<l:content>
+					<ScrollContainer visible="{account>/unauth}">
+						<html:a 
+							href="#" 
+							onclick="navigator.id.request();" 
+							class="persona-button dark">
+							<Text 
+								text="{i18n>pageMaster.footer.btnLogin}"
+								textAlign="Center"/>
+						</html:a>
+					</ScrollContainer>
+				</l:content>
+			</l:Grid>
 			<IconTabBar expanded="{device>/isNoPhone}">
 				<items>
 					<IconTabFilter

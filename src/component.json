@@ -1,42 +1,48 @@
 {
-        "name" : "Esconderse",
-        "version" : "1.0",
-        "includes" : [
-        	"css/esconderse.css"
-        ],
-        "dependencies" : {
-            "libs" : ["sap.m", "sap.ui.layout"],
-            "components" : []
-    	},
-		"rootView" : "de.esconderse.view.App",
+	"name" : "Esconderse",
+	"version" : "1.0",
+	"includes" : [
+		"css/esconderse.css"
+	],
+	"dependencies" : {
+		"libs" : ["sap.m", "sap.ui.layout"],
+		"components" : []
+	},
+	"rootView" : "de.esconderse.view.App",
+	"config" : {
+		"resourceBundle" : "i18n/messageBundle.properties"
+	},
+	"routing" : {
 		"config" : {
-            "resourceBundle" : "i18n/messageBundle.properties"
-        },
-        "routing" : {
-			"config" : {
-				"routerClass" : "de.esconderse.Router",
-				"viewType" : "XML",
-				"viewPath" : "de.esconderse.view",
-				"targetAggregation" : "detailPages",
-				"clearTarget" : false
-			},
-			"routes" : [{
+			"routerClass" : "de.esconderse.Router",
+			"viewType" : "XML",
+			"viewPath" : "de.esconderse.view",
+			"targetAggregation" : "pages",
+			"clearTarget" : false
+		},
+		"routes" : [{
+			"pattern" : "",
+			"name" : "AppSplit",
+			"view" : "AppSplit",
+			"targetControl" : "esconderseApp",
+			"subroutes" : [{
 				"pattern" : "",
-				"name" : "main",
+				"name" : "master",
 				"view" : "Master",
 				"targetAggregation" : "masterPages",
-				"targetControl" : "idAppControl",
-				"subroutes" : [
-					{
-						"pattern" : "/forward/{forward}",
-						"name" : "forward",
-						"view" : "Forward"
-					},{
-						"pattern": "account",
-						"name" : "account",
-						"view" : "Account"
-					}
-				]
+				"targetControl" : "esconderseSplitApp",
+				"subroutes" : [{
+					"pattern" : "forward/{forward}",
+					"name" : "forward",
+					"view" : "Forward",
+					"targetAggregation" : "detailPages"
+				}]
 			}]
-		}
-    }
+		},{
+			"pattern": "account",
+			"name" : "account",
+			"view" : "Account",
+			"targetControl" : "esconderseApp"
+		}]
+	}
+}

@@ -44,7 +44,6 @@ sap.ui.core.UIComponent.extend("de.esconderse.Component", {
             .setModel(accountModel, "account")
             .setModel(resourceModel, "i18n")
             .getRouter().initialize();
-
         this.registerListener(sap.ui.getCore().getEventBus());
         this.doLoadList()
             .doLoadAccount();
