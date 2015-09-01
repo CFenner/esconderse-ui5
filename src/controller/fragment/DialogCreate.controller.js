@@ -8,13 +8,11 @@ sap.ui.define(["sap.ui.core.mvc.Controller", "de.esconderse.util.Hektor"], funct
 		onCreate: function(/*evt*/){
 			var description = this.getView().byId("createDescription").getValue(),
 				state = this.getView().byId("createState").getState();
-			Hektor.create(description, state, 
+			Hektor.create(description, state,
 				function(){
 					core.getEventBus().publish({}, "master", "enableCreate");
-				}, 
-				function(){
-				
-				});
+				},
+				function(){});
 		},
 		onCancel: function(/*evt*/){
 			var core = sap.ui.getCore();
