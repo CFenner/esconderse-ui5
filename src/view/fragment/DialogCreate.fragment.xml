@@ -1,5 +1,5 @@
 <core:FragmentDefinition
-	controllerName="de.esconderse.view.fragment.DialogCreate"
+	controllerName="de.esconderse.controller.fragment.DialogCreate"
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Dialog
