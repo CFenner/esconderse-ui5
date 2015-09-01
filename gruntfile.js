@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 		"validate"
 		, "less"
 	]);
-	
+
 	grunt.registerTask("deploy", [
 		"validate"
 		, "test"

@@ -12,12 +12,12 @@
 		<content>
 			<ObjectHeader 
 				title="{description}">
-				<attributes>
+				<attributes><!--
 					<ObjectAttribute 
 						id="email"
 						text="{email}" 
 						active="true"
-						press="doSelect"/>
+						press="doSelect"/>-->
 				</attributes>
 				<statuses>
 					<ObjectStatus 

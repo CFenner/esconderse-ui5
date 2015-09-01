@@ -60,7 +60,7 @@ sap.ui.define([
 
 			src.setBusy(true);
 			de.esconderse.util.Hektor.deactivate(id,
-				function(/*data*/){
+				function(data){
 					var msg = "Success: " + JSON.stringify(data);
 					Toast.show(msg);
 

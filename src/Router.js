@@ -1,7 +1,3 @@
-//jQuery.sap.require("sap.m.routing.RouteMatchedHandler");
-//jQuery.sap.require("sap.ui.core.routing.Router");
-//jQuery.sap.declare("de.esconderse.Router");
-
 sap.ui.define([
 	"sap/m/routing/RouteMatchedHandler",
 	"sap/ui/core/routing/Router",

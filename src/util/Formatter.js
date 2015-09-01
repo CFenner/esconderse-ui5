@@ -2,26 +2,22 @@ jQuery.sap.declare("de.esconderse.util.Formatter");
 jQuery.sap.require("de.esconderse.resources.thirdParty.moment-with-locales");
 
 de.esconderse.util.Formatter = {
-
 	uppercaseFirstChar : function(sStr) {
 		return sStr.charAt(0).toUpperCase() + sStr.slice(1);
 	},
-
 	discontinuedStatusState : function(sDate) {
 		return sDate ? "Error" : "None";
 	},
-
 	discontinuedStatusValue : function(sDate) {
 		return sDate ? "Discontinued" : "";
 	},
-
 	currencyValue : function (value) {
 		return parseFloat(value).toFixed(2);
 	},
 	// ---------- Status
 	statusIcon: function(status){
-//		return this.statusText(status, 'sap-icon://connected', 'sap-icon://disconnected');
-		return status === 1?'sap-icon://connected':'sap-icon://disconnected';
+//		return this.statusText(status, "sap-icon://connected", "sap-icon://disconnected");
+		return status === 1?"sap-icon://connected":"sap-icon://disconnected";
 	},
 	statusText: function(status, active, inactive){
 		return status === 1?active:inactive;
@@ -52,6 +48,6 @@ de.esconderse.util.Formatter = {
 	},
 	// ---------- Date
 	datePretty: function(date, secondsSingle, secondsMulti){
-		return moment(date, "YYYY-MM-DD hh:mm:ss", 'de').fromNow();
+		return moment(date, "YYYY-MM-DD hh:mm:ss", "de").fromNow();
 	}
 };
