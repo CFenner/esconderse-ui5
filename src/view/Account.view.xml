@@ -1,10 +1,10 @@
 <mvc:View
-	controllerName="de.esconderse.view.Account"
+	controllerName="de.esconderse.controller.Account"
 	xmlns="sap.m" 
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-  xmlns:l="sap.ui.layout"
+	xmlns:l="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form">
 	<Page
 		showNavButton="true"
