@@ -80,14 +80,14 @@
 						title="{description}"
 						icon="{
 							path: 'status', 
-							formatter: 'de.esconderse.util.Formatter.statusIcon'
+							formatter: '.statusIcon'
 						}">
 						<customData>
 							<core:CustomData 
 								key="class" 
 								value="{
 									path: 'status', 
-									formatter: 'de.esconderse.util.Formatter.statusSetClass'
+									formatter: '.statusSetClass'
 								}"/>
 						</customData>
 					</ObjectListItem>

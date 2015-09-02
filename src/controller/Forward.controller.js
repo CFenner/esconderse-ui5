@@ -3,7 +3,8 @@ sap.ui.define([
 		"sap/ui/core/UIComponent",
 		"sap/m/MessageToast",
 		"de/esconderse/util/Formatter",
-		"de/esconderse/util/Hektor"], function(Controller, Component, Toast, Formatter, Hektor){
+		"de/esconderse/util/Hektor"
+], function(Controller, Component, Toast, Formatter, Hektor){
 	"use strict";
 	Controller.extend("de.esconderse.controller.Forward", {
 		registerListener: function(bus){
@@ -23,10 +24,10 @@ sap.ui.define([
 		},
 		onInit: function() {
 			this.registerListener(sap.ui.getCore().getEventBus())
-				._getRouter().attachRouteMatched(this.onRouteMatched, this);
+				.getRouter().attachRouteMatched(this.onRouteMatched, this);
 		},
 		// ---------- actions
-		_getForwardId: function(view){
+		getForwardId: function(view){
 			var data = view.getModel().getData();
 			var path = view.getBindingContext().getPath();
 			var index = path.split("/")[2];
@@ -39,10 +40,10 @@ sap.ui.define([
 		},
 		doActivate: function(evt){
 			var src = evt.getSource(),
-				id = this._getForwardId(this.getView());
+				id = this.getForwardId(this.getView());
 
 			src.setBusy(true);
-			de.esconderse.util.Hektor.activate(id,
+			Hektor.activate(id,
 				function(data){
 					var msg = "Success: " + JSON.stringify(data);
 					Toast.show(msg);
@@ -56,10 +57,10 @@ sap.ui.define([
 		},
 		doDeactivate: function(evt){
 			var src = evt.getSource(),
-				id = this._getForwardId(this.getView());
+				id = this.getForwardId(this.getView());
 
 			src.setBusy(true);
-			de.esconderse.util.Hektor.deactivate(id,
+			Hektor.deactivate(id,
 				function(data){
 					var msg = "Success: " + JSON.stringify(data);
 					Toast.show(msg);
@@ -68,19 +69,19 @@ sap.ui.define([
 					bus.publish("detail", "enableDeactivate");
 					bus.publish("master", "loadList");
 				},
-				function(data){}
+				function(/*data*/){}
 			);
 		},
 		// ---------- navigation
 		onNavBack: function() {
 			// This is only relevant when running on phone devices
-			this._getRouter().myNavBack("main");
+			this.getRouter().myNavBack("main");
 		},
 		onDetailSelect: function(evt) {
 			var src = evt.getSource(), path = src.getPath;
-				alert("ondetailselect");
+//				alert("ondetailselect");
 
-			this._getRouter().navTo("forward", {
+			this.getRouter().navTo("forward", {
 				forward: path.split("/")[1]
 			}, true);
 		},
@@ -110,13 +111,14 @@ sap.ui.define([
 				endButton: new sap.m.Button({
 					text: "{i18n>dialogRename.btnRename}",
 					press: function (/*evt*/) {
-						var name = sap.ui.getCore().byId("inputRename").getValue(),
-							id = that._getForwardId(that.getView());
+						var input = sap.ui.getCore().byId("inputRename"),
+							name = input.getValue(),
+							id = that.getForwardId(that.getView());
 
 						if(name.trim() === ""){
 							name = input.getPlaceholder();
 						}
-						de.esconderse.util.Hektor.rename(id, name,
+						Hektor.rename(id, name,
 							function(data){
 								var msg = "Success: " + JSON.stringify(data);
 								Toast.show(msg);
@@ -162,9 +164,9 @@ sap.ui.define([
 					text: "{i18n>dialogDelete.btnDelete}",
 					press: function(/*evt*/){
 						//TODO: implement confirmation dialog!!
-						var id = that._getForwardId(that.getView());
+						var id = that.getForwardId(that.getView());
 
-						de.esconderse.util.Hektor.delete(id,
+						Hektor.delete(id,
 							function(data){
 								var msg = "Success: " + JSON.stringify(data);
 								Toast.show(msg);
@@ -191,7 +193,7 @@ sap.ui.define([
 			dialog.open();
 		},
 		// ---------- router
-		_getRouter: function(){
+		getRouter: function(){
 			return Component.getRouterFor(this);
 		},
 		onRouteMatched: function(evt){
@@ -199,6 +201,18 @@ sap.ui.define([
 			if (evt.getParameter("name") === "forward") {
 				this.getView().bindElement("/list/" + evt.getParameter("arguments").forward);
 			}
+		},
+		statusIcon: function(status){
+			return Formatter.statusIcon(status);
+		},
+		statusText: function(status, active, inactive){
+			return Formatter.statusText(status, active, inactive);
+		},
+		statusState: function(status){
+			return Formatter.statusState(status);
+		},
+		datePretty: function(date/*, secondsSingle, secondsMulti*/){
+			return Formatter.datePretty(date);
 		}
 	});
 });

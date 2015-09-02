@@ -4,6 +4,7 @@ sap.ui.require([
 	"sap/ui/core/ComponentContainer"
 ], function(Toast, Shell, Container){
 	"use strict";
+	/*globals navigator*/
 	navigator.id.watch({
 		loggedInUser: "null",
 		onlogin: function (assertion) {

@@ -27,7 +27,7 @@
 								{path: 'i18n>pageForward.statusActive'},
 								{path: 'i18n>pageForward.statusInactive'}
 							], 
-							formatter: 'de.esconderse.util.Formatter.statusText'
+							formatter: '.statusText'
 						}" 
 						tooltip="{
 							parts:[
@@ -35,20 +35,20 @@
 								{path: 'i18n>pageForward.statusActive'},
 								{path: 'i18n>pageForward.statusInactive'}
 							], 
-							formatter: 'de.esconderse.util.Formatter.statusText'
+							formatter: '.statusText'
 						}"
 						icon="{
 							path: 'status',
-							formatter: 'de.esconderse.util.Formatter.statusIcon'
+							formatter: '.statusIcon'
 						}"
 						state="{
 							path: 'status',
-							formatter: 'de.esconderse.util.Formatter.statusState'
+							formatter: '.statusState'
 						}"/>
 					<ObjectAttribute 
 						text="{i18n>pageForward.attrCreated} {
 							path: 'createDate',
-							formatter: 'de.esconderse.util.Formatter.datePretty'
+							formatter: '.datePretty'
 						}"/>
 				</statuses>
 			</ObjectHeader>

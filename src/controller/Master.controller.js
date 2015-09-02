@@ -8,7 +8,8 @@ sap.ui.define([
 		"sap/m/Button",
 		"sap/ui/Device",
 		"de/esconderse/util/Formatter",
-		"de/esconderse/util/Hektor"], function(Controller, Component, Toast, Dialog, Input, Label, Button, Device, Formatter, Hektor){
+		"de/esconderse/util/Hektor"
+], function(Controller, Component, Toast, Dialog, Input, Label, Button, Device, Formatter, Hektor){
 	"use strict";
 	return Controller.extend("de.esconderse.controller.Master", {
 		registerListener: function(bus){
@@ -35,7 +36,7 @@ sap.ui.define([
 			}, this);
 
 			this.registerListener(sap.ui.getCore().getEventBus())
-				._getRouter().attachRouteMatched(this.onRouteMatched, this);
+				.getRouter().attachRouteMatched(this.onRouteMatched, this);
 		},
 		// ---------- navigation
 		selectFirst: function() {
@@ -54,7 +55,7 @@ sap.ui.define([
 
 			// If we"re on a phone, include nav in history; if not, don"t.
 			var bReplace = jQuery.device.is.phone ? false : true;
-			this._getRouter().navTo("forward", {
+			this.getRouter().navTo("forward", {
 				from: "master",
 				forward: index
 			}, bReplace);
@@ -81,11 +82,11 @@ sap.ui.define([
 			var binding = list.getBinding("items");
 			binding.filter(filters, "Application");
 		},
-		onRefresh: function(evt){
+		onRefresh: function(/*evt*/){
 			var bus = sap.ui.getCore().getEventBus();
 			bus.publish("master", "loadList");
 		},
-		onForward: function(evt, listItem, listItemArray, isSelected) {
+		onForward: function(evt, listItem/*, listItemArray, isSelected*/) {
 			listItem = evt.getParameter("listItem") || evt.getSource();
 			//isSelected = evt.getParameter("selected");
 			// Get the list item, either from the listItem parameter or from the event"s
@@ -96,36 +97,37 @@ sap.ui.define([
 		onHome: function(/*evt*/){
 			// If we"re on a phone, include nav in history; if not, don"t.
 			var bReplace = jQuery.device.is.phone ? false : true;
-			this._getRouter().navTo("account", {
+			this.getRouter().navTo("account", {
 				from: "master",
 				forward: null
 			}, bReplace);
 		},
 		onLogout: function(/*evt*/){
+			/*globals window*/
 			window.location = "https://esconderse.de/logout.php";
 		},
 		onMenuUsage: function(evt){
-			if(!this._usagePopover) {
-				this._usagePopover = sap.ui.xmlfragment("de.esconderse.view.fragment.PopoverUsage", this);
-				this.getView().addDependent(this._usagePopover);
+			if(!this.usagePopover) {
+				this.usagePopover = sap.ui.xmlfragment("de.esconderse.view.fragment.PopoverUsage", this);
+				this.getView().addDependent(this.usagePopover);
 			}
-			this._usagePopover.openBy(evt.getSource());
+			this.usagePopover.openBy(evt.getSource());
 		},
 		onMenuFilter: function(evt){
-			if(!this._filterSheet){
-				this._filterSheet = sap.ui.xmlfragment("de.esconderse.view.fragment.ActionFilter", this);
-				this.getView().addDependent(this._filterSheet);
+			if(!this.filterSheet){
+				this.filterSheet = sap.ui.xmlfragment("de.esconderse.view.fragment.ActionFilter", this);
+				this.getView().addDependent(this.filterSheet);
 			}
-			this._filterSheet.openBy(evt.getSource());
+			this.filterSheet.openBy(evt.getSource());
 		},
 		onFilterReset: function(/*evt*/){ this.setFilter(false); },
-		onFilterActive: function(evt){
+		onFilterActive: function(/*evt*/){
 	//		var src = evt.getSource();
 			//alert(src.getData("data-status"));
 	//		evt.getSource().set
 			this.setFilter(true, true);
 		},
-		onFilterInactive: function(evt){ this.setFilter(true, false); },
+		onFilterInactive: function(/*evt*/){ this.setFilter(true, false); },
 		setFilter: function(doFilter, active){
 			var filter = doFilter
 				? [new sap.ui.model.Filter(
@@ -138,16 +140,16 @@ sap.ui.define([
 		},
 		onDialogCreateOpen: function(evt){
 			evt.getSource().setBusy(true);
-			if(!this._createDialog) {
-				this._createDialog = sap.ui.xmlfragment("de.esconderse.view.fragment.DialogCreate", this);
-				this.getView().addDependent(this._createDialog);
+			if(!this.createDialog) {
+				this.createDialog = sap.ui.xmlfragment("de.esconderse.view.fragment.DialogCreate", this);
+				this.getView().addDependent(this.createDialog);
 			}
 			this.byId("inputCreate").setValue();
-			this._createDialog.open();
+			this.createDialog.open();
 		},
 		onCreateDialog: function (evt) {
 			var src = evt.getSource(),
-				that = this,
+/*				that = this,*/
 				dialog = new Dialog({
 				title: "{i18n>dialogCreate.title}",
 				type: "Message",
@@ -170,12 +172,12 @@ sap.ui.define([
 				}),
 				endButton: new Button({
 					text: "{i18n>dialogCreate.btnCreate}",
-					press: function (evt) {
-						var src = evt.getSource(),
-	//						id = that._getForwardId(that.getView()),
+					press: function (/*evt*/) {
+						var /*src = evt.getSource(),*/
+	//						id = that.getForwardId(that.getView()),
 							name = sap.ui.getCore().byId("inputCreate").getValue();
 
-						de.esconderse.util.Hektor.create(name, 0,
+						Hektor.create(name, 0,
 							function(data){
 								var msg = "Success: " + JSON.stringify(data);
 								Toast.show(msg);
@@ -200,7 +202,7 @@ sap.ui.define([
 			dialog.open();
 		},
 		// ---------- Router
-		_getRouter: function(){
+		getRouter: function(){
 			return Component.getRouterFor(this);
 		},
 		onRouteMatched: function(evt) {
@@ -227,6 +229,12 @@ sap.ui.define([
 					}
 				}
 			}, this));
+		},
+		statusIcon: function(status){
+			return Formatter.statusIcon(status);
+		},
+		statusSetClass: function(status){
+			return Formatter.statusSetClass(status);
 		}
 	});
 });

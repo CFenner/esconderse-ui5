@@ -1,6 +1,6 @@
-sap.ui.define([], function(){
+sap.ui.define(function(){
 	"use strict";
-	de.esconderse.util.Hektor = {
+	return {
 		create: function(name, state, sucCallback, errCallback){
 	//		alert(name + "  " + state);
 			this.ajax("create&name=" + name,
