@@ -229,12 +229,6 @@ sap.ui.define([
 					}
 				}
 			}, this));
-		},
-		statusIcon: function(status){
-			return Formatter.statusIcon(status);
-		},
-		statusSetClass: function(status){
-			return Formatter.statusSetClass(status);
 		}
 	});
 });

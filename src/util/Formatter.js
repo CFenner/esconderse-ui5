@@ -1,9 +1,11 @@
-sap.ui.define([
-	"de/esconderse/resources/thirdParty/moment-with-locales"
-], function(){
-	"use strict";
+//sap.ui.define([
+jQuery.sap.declare("de.esconderse.util.Formatter");
+jQuery.sap.require("de/esconderse/resources/thirdParty/moment-with-locales");
+//], function(){
+//	"use strict";
 	/*globals moment*/
-	return {
+//	return 
+	de.esconderse.util.Formatter = {
 		uppercaseFirstChar: function(sStr) {
 			return sStr.charAt(0).toUpperCase() + sStr.slice(1);
 		},
@@ -52,4 +54,4 @@ sap.ui.define([
 			return moment(date, "YYYY-MM-DD hh:mm:ss", "de").fromNow();
 		}
 	};
-});
+//});

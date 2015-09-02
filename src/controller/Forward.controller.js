@@ -201,18 +201,6 @@ sap.ui.define([
 			if (evt.getParameter("name") === "forward") {
 				this.getView().bindElement("/list/" + evt.getParameter("arguments").forward);
 			}
-		},
-		statusIcon: function(status){
-			return Formatter.statusIcon(status);
-		},
-		statusText: function(status, active, inactive){
-			return Formatter.statusText(status, active, inactive);
-		},
-		statusState: function(status){
-			return Formatter.statusState(status);
-		},
-		datePretty: function(date/*, secondsSingle, secondsMulti*/){
-			return Formatter.datePretty(date);
 		}
 	});
 });
