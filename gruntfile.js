@@ -1,3 +1,4 @@
+/*globals module*/
 module.exports = function(grunt) {
 	"use strict";
 	// Project configuration.
@@ -9,6 +10,7 @@ module.exports = function(grunt) {
 		eslint: {
 			files: [
 				"gruntfile.js"
+				, "src/Component.js"
 				, "src/view/**/*.js"
 				, "src/controller/**/*.js"
 				, "src/util/**/*.js"
