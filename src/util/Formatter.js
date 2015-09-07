@@ -5,6 +5,16 @@ jQuery.sap.require("de/esconderse/resources/thirdParty/moment-with-locales");
 //	"use strict";
 	/*globals moment*/
 //	return 
+	function getUsage(max, current){
+		var usage = 0.0;
+		if(max > 0){
+			usage = current / (max / 100);
+			usage = usage < 0 ? 0.0 : usage;
+			usage = usage > 100 ? 100.0 : usage;
+		}
+		return usage;
+	}
+
 	de.esconderse.util.Formatter = {
 		uppercaseFirstChar: function(sStr) {
 			return sStr.charAt(0).toUpperCase() + sStr.slice(1);
@@ -36,17 +46,10 @@ jQuery.sap.require("de/esconderse/resources/thirdParty/moment-with-locales");
 			return max && current ? current + " von " + max : "";
 		},
 		usagePercent: function(max, current){
-			var result = 0.0;
-			if(max > 0){
-				result = current / (max / 100);
-				result = result < 0 ? 0.0 : result;
-				result = result > 100 ? 100.0 : result;
-			}
-			return result;
+			return getUsage(max, current);
 		},
 		usageState: function(max, current){
-			var usage = this.usagePercent(max, current);
-			//var usage = de.esconderse.util.Formatter.usagePercent(max, current);
+			var usage = getUsage(max, current);
 			return usage > 90 ? "Error" : usage > 60 ? "Warning" : "Success";
 		},
 		// ---------- Date
