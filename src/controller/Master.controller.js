@@ -105,14 +105,14 @@ sap.ui.define([
 		onLogout: function(/*evt*/){
 			/*globals window*/
 			window.location = "https://esconderse.de/logout.php";
-		},
+		},/*
 		onMenuUsage: function(evt){
 			if(!this.usagePopover) {
 				this.usagePopover = sap.ui.xmlfragment("de.esconderse.view.fragment.PopoverUsage", this);
 				this.getView().addDependent(this.usagePopover);
 			}
 			this.usagePopover.openBy(evt.getSource());
-		},
+		},*/
 		onMenuFilter: function(evt){
 			if(!this.filterSheet){
 				this.filterSheet = sap.ui.xmlfragment("de.esconderse.view.fragment.ActionFilter", this);

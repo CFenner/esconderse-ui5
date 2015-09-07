@@ -27,28 +27,7 @@
 						visible="{account>/auth}"/>
 				</contentRight>
 			</Bar>
-		</customHeader><!--
-		<headerContent>
-					<Button 
-						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
-						icon="sap-icon://home" 
-						press="onHome"/>
-					<ScrollContainer visible="{account>/unauth}">
-						<html:a 
-							href="#" 
-							onclick="navigator.id.request();" 
-							class="persona-button dark">
-							<Text 
-								text="{i18n>pageMaster.footer.btnLogin}"
-								textAlign="Center"/>
-						</html:a>
-					</ScrollContainer>
-					<Button 
-						icon="sap-icon://log"
-						tooltip="{i18n>pageMaster.header.btnLogout.tooltip}"
-						press="onLogout"
-						visible="{account>/auth}"/>
-		</headerContent>-->
+		</customHeader>
 		<subHeader>
 			<Bar>
 				<contentMiddle>
@@ -97,20 +76,9 @@
 		</content>
 		<footer>
 			<Bar>
-				<contentLeft><!--
-					<Button 
-						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
-						icon="sap-icon://home" 
-						press="onHome"/>-->
-				</contentLeft>
-				<contentMiddle>
-				</contentMiddle>
-				<contentRight><!--
-					<Button 
-						tooltip="{i18n>pageMaster.footer.btnUsage.tooltip}"
-						icon="sap-icon://bar-chart" 
-						press="onMenuUsage"
-						visible="{account>/auth}"/>-->
+				<contentLeft></contentLeft>
+				<contentMiddle></contentMiddle>
+				<contentRight>
 					<Button 
 						tooltip="{i18n>pageMaster.footer.btnFilter.tooltip}"
 						icon="sap-icon://filter" 
