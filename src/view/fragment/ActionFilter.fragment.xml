@@ -7,15 +7,15 @@
 		<buttons>
 	  		<Button 
 	  			icon="sap-icon://undo" 
-	  			text="{i18n>pageMaster.footer.filterNone}" 
+	  			text="{i18n>pageMaster.footer.filter.none}" 
 	  			press="onFilterReset"/>	
 	  		<Button 
 	  			icon="sap-icon://connected" 
-	  			text="{i18n>pageMaster.footer.filterActive}" 
+	  			text="{i18n>pageMaster.footer.filter.active}" 
 	  			press="onFilterActive"/>
 	  		<Button 
 	  			icon="sap-icon://disconnected" 
-	  			text="{i18n>pageMaster.footer.filterInactive}" 
+	  			text="{i18n>pageMaster.footer.filter.inactive}" 
 	  			press="onFilterInactive">
 	  			<customData>
 	  				<core:CustomData key="status" value="inactive"/>

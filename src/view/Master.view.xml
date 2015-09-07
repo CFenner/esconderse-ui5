@@ -12,7 +12,7 @@
 			<Bar>
 				<contentLeft>
 					<Button 
-						tooltip="{i18n>pageMaster.footer.btnHome.tooltip}"
+						tooltip="{i18n>pageMaster.header.btnAccount.tooltip}"
 						icon="sap-icon://customer" 
 						press="onHome"/>
 				</contentLeft>
