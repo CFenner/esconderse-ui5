@@ -52,7 +52,7 @@
 						visible="{account>/auth}"
 						text="{i18n>pageAccount.tabGrant.title}"
 						tooltip="{i18n>pageAccount.tabGrant.tooltip}"
-						icon="sap-icon://key">
+						icon="sap-icon://badge">
             			<core:Fragment fragmentName="de.esconderse.view.fragment.TabGrant" type="XML"/>
             		</IconTabFilter><!--
           			<IconTabFilter
