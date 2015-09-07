@@ -3,7 +3,9 @@ module.exports = function(grunt) {
 	"use strict";
 	// Project configuration.
 //	var sources = "src/**/*.js";
-	var ui5Resources = "src/resources/1.28.5";
+	var ui5Resources = "src/resources/ui5-*";
+	var ui5Version = typeof grunt.option("ui5") === "string" ? grunt.option("ui5") : "ui5";
+
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
@@ -42,26 +44,68 @@ module.exports = function(grunt) {
 					paths: ["src/less/"]
 				},
 				files: {
-					"src/css/esconderse-gen.css": "src/less/esconderse.less"
+					"src/css/esconderse.css": "src/less/esconderse.less"
 				}
 			}
 		},
+		compress: {
+			ui5: {
+				options: {
+					archive: "src/resources/deploy/" + ui5Version + ".zip"
+				},
+				files: [{
+					expand: true,
+					cwd: "src/resources/" + ui5Version,
+					src: ["**"],
+					dest: "",
+					filter: "isFile"
+				}]
+			}
+		},
 		"ftp-deploy": {
-			build: {
+			app: {
 				auth: {
 					host: "cfenner.de",
 					port: 21,
 					authKey: "allInkl"
 				},
 				src: "src",
-				dest: "test-upload/",
+				dest: "esconderse.de/ui5/",
 				exclusions: [
-					"src/**/.DS_Store",
-					"src/**/Thumbs.db",
-					"src/**/.theming"
-					, ui5Resources
+					ui5Resources
+					, "src/**/.DS_Store"
+					, "src/**/Thumbs.db"
+					, "src/**/.theming"
+					, "src/less"
 				]
+			},
+			ui5: {
+				auth: {
+					host: "cfenner.de",
+					port: 21,
+					authKey: "allInkl"
+				},
+				src: "src/resources/" + ui5Version,
+				dest: "esconderse.de/ui5/resources/",
+				exclusions: [
+					"src/**/.DS_Store"
+					, "src/**/Thumbs.db"
+					, "src/**/.theming"
+				]
+			},
+			ui5zip: {
+				auth: {
+					host: "cfenner.de",
+					port: 21,
+					authKey: "allInkl"
+				},
+				src: "src/resources/deploy",
+				dest: "esconderse.de/ui5/resources/",
+				exclusions: []
 			}
+		},
+		clean: {
+			ui5: ["src/resources/" + ui5Version + ".zip", "src/resources/deploy"]
 		}
 	});
 
@@ -70,7 +114,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-jsonlint");
 	grunt.loadNpmTasks("grunt-contrib-less");
 	grunt.loadNpmTasks("grunt-coveralls");
+	grunt.loadNpmTasks("grunt-contrib-compress");
 	grunt.loadNpmTasks("grunt-ftp-deploy");
+	grunt.loadNpmTasks("grunt-contrib-clean");
 
 	// Default task(s).
 	grunt.registerTask("validate", [
@@ -85,9 +131,14 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask("deploy", [
-		"validate"
-		, "test"
-		, "ftp-deploy"
+		"test"
+		, "ftp-deploy:app"
+	]);
+
+	grunt.registerTask("deploy-ui5", [
+		"compress:ui5"
+		, "ftp-deploy:ui5zip"
+		, "clean:ui5"
 	]);
 };
 /*
