@@ -123,7 +123,7 @@
   background: -o-linear-gradient(top, #ee731a, #d03116);
   background: -webkit-linear-gradient(top, #ee731a, #d03116);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee731a), color-stop(100%, #d03116));
-  background: linear-gradient(top, #ee731a, #d03116);
+  background: linear-gradient(top, #d03116, #ee731a);
   /* flipped for updated spec  ?!?*/
 }
 .persona-button:hover {
@@ -133,7 +133,7 @@
   background: -o-linear-gradient(top, #cb6216, #b12a13);
   background: -webkit-linear-gradient(top, #cb6216, #b12a13);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cb6216), color-stop(100%, #b12a13));
-  background: linear-gradient(top, #cb6216, #b12a13);
+  background: linear-gradient(top, #b12a13, #cb6216);
   /* flipped for updated spec  ?!?*/
 }
 .persona-button span:before {
@@ -144,7 +144,7 @@
   background: -o-linear-gradient(top, #f7ad27, #e84a21);
   background: -webkit-linear-gradient(top, #f7ad27, #e84a21);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7ad27), color-stop(100%, #e84a21));
-  background: linear-gradient(top, #f7ad27, #e84a21);
+  background: linear-gradient(top, #e84a21, #f7ad27);
   /* flipped for updated spec  ?!?*/
 }
 .persona-button:before {
@@ -155,7 +155,7 @@
   background: -o-linear-gradient(-45deg, #f7ad27, #e84a21);
   background: -webkit-linear-gradient(-45deg, #f7ad27, #e84a21);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7ad27), color-stop(100%, #e84a21));
-  background: linear-gradient(-45deg, #f7ad27, #e84a21);
+  background: linear-gradient(-45deg, #e84a21, #f7ad27);
   /* flipped for updated spec  ?!?*/
 }
 /* ========================================================
@@ -168,7 +168,7 @@
   background: -o-linear-gradient(top, #ee731a, #d03116);
   background: -webkit-linear-gradient(top, #ee731a, #d03116);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee731a), color-stop(100%, #d03116));
-  background: linear-gradient(top, #ee731a, #d03116);
+  background: linear-gradient(top, #d03116, #ee731a);
   /* flipped for updated spec  ?!?*/
 }
 .dark:hover {
@@ -178,7 +178,7 @@
   background: -o-linear-gradient(top, #cb6216, #b12a13);
   background: -webkit-linear-gradient(top, #cb6216, #b12a13);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cb6216), color-stop(100%, #b12a13));
-  background: linear-gradient(top, #cb6216, #b12a13);
+  background: linear-gradient(top, #b12a13, #cb6216);
   /* flipped for updated spec  ?!?*/
 }
 .dark span:before {
@@ -189,7 +189,7 @@
   background: -o-linear-gradient(top, #f7ad27, #e84a21);
   background: -webkit-linear-gradient(top, #f7ad27, #e84a21);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7ad27), color-stop(100%, #e84a21));
-  background: linear-gradient(top, #f7ad27, #e84a21);
+  background: linear-gradient(top, #e84a21, #f7ad27);
   /* flipped for updated spec  ?!?*/
 }
 .dark:before {
@@ -200,7 +200,7 @@
   background: -o-linear-gradient(-45deg, #f7ad27, #e84a21);
   background: -webkit-linear-gradient(-45deg, #f7ad27, #e84a21);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7ad27), color-stop(100%, #e84a21));
-  background: linear-gradient(-45deg, #f7ad27, #e84a21);
+  background: linear-gradient(-45deg, #e84a21, #f7ad27);
   /* flipped for updated spec  ?!?*/
 }
 /* ========================================================
@@ -213,7 +213,7 @@
   background: -o-linear-gradient(top, #ee731a, #d03116);
   background: -webkit-linear-gradient(top, #ee731a, #d03116);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee731a), color-stop(100%, #d03116));
-  background: linear-gradient(top, #ee731a, #d03116);
+  background: linear-gradient(top, #d03116, #ee731a);
   /* flipped for updated spec  ?!?*/
 }
 .orange:hover {
@@ -223,7 +223,7 @@
   background: -o-linear-gradient(top, #cb6216, #b12a13);
   background: -webkit-linear-gradient(top, #cb6216, #b12a13);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cb6216), color-stop(100%, #b12a13));
-  background: linear-gradient(top, #cb6216, #b12a13);
+  background: linear-gradient(top, #b12a13, #cb6216);
   /* flipped for updated spec  ?!?*/
 }
 .orange span:before {
@@ -234,7 +234,7 @@
   background: -o-linear-gradient(top, #f7ad27, #e84a21);
   background: -webkit-linear-gradient(top, #f7ad27, #e84a21);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7ad27), color-stop(100%, #e84a21));
-  background: linear-gradient(top, #f7ad27, #e84a21);
+  background: linear-gradient(top, #e84a21, #f7ad27);
   /* flipped for updated spec  ?!?*/
 }
 .orange:before {
@@ -245,7 +245,7 @@
   background: -o-linear-gradient(-45deg, #f7ad27, #e84a21);
   background: -webkit-linear-gradient(-45deg, #f7ad27, #e84a21);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7ad27), color-stop(100%, #e84a21));
-  background: linear-gradient(-45deg, #f7ad27, #e84a21);
+  background: linear-gradient(-45deg, #e84a21, #f7ad27);
   /* flipped for updated spec  ?!?*/
 }
 /* ff8305 */

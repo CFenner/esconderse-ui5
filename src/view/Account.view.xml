@@ -7,10 +7,22 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form">
 	<Page
-		showNavButton="true"
-		navButtonPress="onNavBack"
-		class="sapUiFioriObjectPage"
-		title="{i18n>pageAccount.title}">
+		class="sapUiFioriObjectPage">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button 
+						tooltip="{i18n>pageAccount.header.btnBack.tooltip}"
+						icon="sap-icon://menu2" 
+						press="onNavBack"
+						visible="{account>/auth}"/>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="{i18n>pageMaster.title}"/>
+				</contentMiddle>
+				<contentRight></contentRight>
+			</Bar>
+		</customHeader>
 		<content><!--
 			<ObjectHeader title="{account>/email}">
 				<attributes>

@@ -86,7 +86,7 @@ module.exports = function(grunt) {
 					authKey: "allInkl"
 				},
 				src: "src/resources/" + ui5Version,
-				dest: "esconderse.de/ui5/resources/",
+				dest: "esconderse.de/ui5/resources/" + ui5Version,
 				exclusions: [
 					"src/**/.DS_Store"
 					, "src/**/Thumbs.db"
