@@ -1,14 +1,17 @@
+/* globals window */
+/* eslint-disable no-underscore-dangle */
 sap.ui.define([
 	"sap/m/routing/RouteMatchedHandler",
 	"sap/ui/core/routing/Router",
 	"sap/ui/core/routing/History"
 ], function(Handler, Router, History){
+	"use strict";
 	return Router.extend("de.esconderse.Router", {
-		constructor : function() {
+		constructor: function() {
 			Router.apply(this, arguments);
 			this._oRouteMatchedHandler = new Handler(this);
 		},
-		myNavBack : function(sRoute, mData) {
+		myNavBack: function(sRoute, mData) {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
 			// The history contains a previous entry
@@ -32,23 +35,23 @@ sap.ui.define([
 		 * 	<li> data : the data passed to the navContainers livecycle events</li>
 		 * </ul>
 		 */
-		myNavToWithoutHash : function (oOptions) {
+		myNavToWithoutHash: function (oOptions) {
 			var oSplitApp = this._findSplitApp(oOptions.currentView);
 			// Load view, add it to the page aggregation, and navigate to it
 			var oView = this.getView(oOptions.targetViewName, oOptions.targetViewType);
 			oSplitApp.addPage(oView, oOptions.isMaster);
 			oSplitApp.to(oView.getId(), oOptions.transition || "show", oOptions.data);
 		},
-		backWithoutHash : function (oCurrentView, bIsMaster) {
+		backWithoutHash: function (oCurrentView, bIsMaster) {
 			var sBackMethod = bIsMaster ? "backMaster" : "backDetail";
 			this._findSplitApp(oCurrentView)[sBackMethod]();
 		},
-		destroy : function() {
+		destroy: function() {
 			Router.prototype.destroy.apply(this, arguments);
 			this._oRouteMatchedHandler.destroy();
 		},
-		_findSplitApp : function(oControl) {
-			sAncestorControlName = "esconderseSplitApp";
+		_findSplitApp: function(oControl) {
+			var sAncestorControlName = "esconderseSplitApp";
 			if (oControl instanceof sap.ui.core.mvc.View && oControl.byId(sAncestorControlName)) {
 				return oControl.byId(sAncestorControlName);
 			}

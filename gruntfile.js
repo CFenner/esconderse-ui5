@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 			files: [
 				"gruntfile.js"
 				, "src/Component.js"
+				, "src/Router.js"
 				, "src/view/**/*.js"
 				, "src/controller/**/*.js"
 				, "src/util/**/*.js"

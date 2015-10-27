@@ -1,3 +1,4 @@
+/* globals window */
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/core/mvc/Controller",
@@ -5,7 +6,7 @@ sap.ui.define([
 ], function (Component, Controller, History) {
 	"use strict";
 	return Controller.extend("de.esconderse.controller.BaseController", {
-		getRouter : function () {
+		getRouter: function () {
 			return Component.getRouterFor(this);
 		},
 		onNavBack: function (sRoute, mData) {
