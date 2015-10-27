@@ -1,5 +1,5 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller",
+		"de/esconderse/controller/BaseController",
 		"sap/ui/core/UIComponent",
 		"sap/m/MessageToast",
 		"sap/m/Dialog",
@@ -202,9 +202,6 @@ sap.ui.define([
 			dialog.open();
 		},
 		// ---------- Router
-		getRouter: function(){
-			return Component.getRouterFor(this);
-		},
 		onRouteMatched: function(evt) {
 			var list = this.getView().byId("mailList");
 			var name = evt.getParameter("name");

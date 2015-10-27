@@ -1,0 +1,8 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<MessagePage
+		title="{i18n>NotSelected}"
+		text="{i18n>NotSelected.text}"
+		description="{i18n>NotSelected.description}"/>
+</mvc:View>
