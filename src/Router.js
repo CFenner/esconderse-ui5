@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/m/routing/RouteMatchedHandler",
 	"sap/ui/core/routing/Router",
-	"sap/ui/core/routing/History"], function(Handler, Router, History){
+	"sap/ui/core/routing/History"
+], function(Handler, Router, History){
 	return Router.extend("de.esconderse.Router", {
 		constructor : function() {
 			Router.apply(this, arguments);

@@ -1,7 +1,8 @@
 sap.ui.define([
 		"sap/ui/core/mvc/Controller",
 		"sap/ui/core/UIComponent",
-		"de/esconderse/util/Formatter"], function(Controller, Component/*, Formatter*/){
+		"de/esconderse/util/Formatter"
+], function(Controller, Component/*, Formatter*/){
 	"use strict";
 	Controller.extend("de.esconderse.controller.Account", {
 		onInit: function(/*evt*/){},
