@@ -5,6 +5,7 @@ sap.ui.require([
 ], function(Toast, Shell, Container){
 	"use strict";
 	/*globals navigator*/
+	if(navigator && navigator.id && navigator.id.watch){
 	navigator.id.watch({
 		loggedInUser: "null",
 		onlogin: function (assertion) {
@@ -30,6 +31,7 @@ sap.ui.require([
 			//window.location = "https://esconderse.de/logout.php";
 		}
 	});
+	}
 
 	sap.ui.getCore().attachInit(function() {
 		new Shell({

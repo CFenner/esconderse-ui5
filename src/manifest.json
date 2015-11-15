@@ -1,0 +1,138 @@
+{
+	"_version": "1.1.0",
+	"sap.app":{
+		"_version": "1.1.0",
+		"id": "de.esconderse",
+		"type": "application",
+		"i18n": "i18n/messageBundle.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion":{
+			"version": "1.0.0"
+		},
+		"dataSources": {}
+	},
+	"sap.ui":{
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_bluecrystal",
+			"sap_hcb"
+		]
+	},
+	"sap.ui5":{
+		"_version": "1.1.0",
+		"resources": {
+			"js": [],
+			"css": [{
+				"uri": "css/esconderse.css"
+			}]
+		},
+		"extends": {
+			"component": "sap.ui.core.UIComponent"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.7",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {}
+			},
+			"components": {}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/messageBundle.properties"
+			},
+			"device": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"account": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel"
+			}
+		},
+		"rootView" : "de.esconderse.view.App",
+		"config" : {
+			"useMockData": false
+		},
+		"routing" : {
+			"config" : {
+				"routerClass" : "de.esconderse.Router",
+				"viewType" : "XML",
+				"viewPath" : "de.esconderse.view",
+				"targetAggregation" : "pages",
+				"clearTarget" : false,
+				"bypassed": {
+					"target": "notFound"
+				}
+			},
+			"routes" : [{
+				"pattern" : "",
+				"name" : "AppSplit",
+				"view" : "AppSplit",
+				"viewLevel": 1,
+				"targetControl" : "esconderseApp",
+				"transition": "slide",
+				"subroutes" : [{
+					"pattern" : "",
+					"name" : "master",
+					"view" : "Master",
+					"viewLevel": 1,
+					"targetAggregation" : "masterPages",
+					"targetControl" : "esconderseSplitApp",
+					"subroutes" : [{
+						"pattern": "",
+						"name": "notSelected",
+						"view": "NotSelected",
+						"viewLevel": 1,
+						"targetAggregation" : "detailPages"
+					},{
+						"pattern" : "forward/{forward}",
+						"name" : "forward",
+						"view": "Forward",
+						"viewLevel": 1,
+						"transition": "flip",
+						"targetAggregation" : "detailPages"
+					}]
+				}]
+			},{
+				"pattern": "account",
+				"name": "account",
+				"target": "account"
+			}],
+			"targets": {
+				"account": {
+					"viewName": "Account",	
+					"controlId": "esconderseApp",
+					"controlAggregation": "pages",
+					"targetControl": "esconderseApp",
+					"transition": "slide",
+					"viewLevel": 2
+				},
+				"notFound": {
+				   "viewName": "NotFound",
+					"targetControl": "esconderseSplitApp",
+					"controlId": "esconderseSplitApp",
+					"controlAggregation": "detailPages",
+					"transition": "show"
+				}
+			}
+		}
+	}
+}
