@@ -5,20 +5,27 @@ module.exports = function(grunt) {
 //	var sources = "src/**/*.js";
 	var ui5Resources = "src/resources/ui5-*";
 	var ui5Version = typeof grunt.option("ui5") === "string" ? grunt.option("ui5") : "ui5";
-
+	var files = {
+		js: [
+			"gruntfile.js"
+			, "src/Component.js"
+			, "src/Router.js"
+			, "src/view/**/*.js"
+			, "src/controller/**/*.js"
+			, "src/model/**/*.js"
+			, "src/util/**/*.js"
+			, "src/js/**/*.js"
+		],
+		json: [
+			"src/*.json"
+		],
+		less: []
+	};
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
 		eslint: {
-			files: [
-				"gruntfile.js"
-				, "src/Component.js"
-				, "src/Router.js"
-				, "src/view/**/*.js"
-				, "src/controller/**/*.js"
-				, "src/util/**/*.js"
-				, "src/js/**/*.js"
-			]
+			files: files.js
 		},
 		lesslint: {
 			development: ["src/less/*.less"],
@@ -32,11 +39,7 @@ module.exports = function(grunt) {
 		},
 		jsonlint: {
 			all: {
-				src: [
-					"src/**/*.json",
-					"*.json",
-					"model/*.json"
-				]
+				src: files.json
 			}
 		},
 		less: {
