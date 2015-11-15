@@ -18,9 +18,16 @@
 						text="{email}" 
 						active="true"
 						press="doSelect"/>-->
+						<!--
+					<ObjectAttribute
+						title="{i18n>pageForward.attributeLinkTitle}"
+						text="www.test.de"
+						active="true"
+						press="" />-->
 				</attributes>
 				<statuses>
 					<ObjectStatus 
+						title="{i18n>pageForward.statusStatusTitle}"
 						text="{
 							parts:[
 								{path: 'status'},

@@ -1,6 +1,7 @@
 sap.ui.define([
 	"sap/ui/Device"
 ], function(Device){
+	"use strict";
 	return {
 		isTouch: Device.support.touch,
 		isNoTouch: !Device.support.touch,
