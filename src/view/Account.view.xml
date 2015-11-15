@@ -23,29 +23,16 @@
 				<contentRight></contentRight>
 			</Bar>
 		</customHeader>
-		<content><!--
-			<ObjectHeader title="{account>/email}">
-				<attributes>
-					<ObjectAttribute title="Angelegt" text="{account>/prettyDate}" />
-				</attributes>
-			</ObjectHeader>-->
-			
-  			<l:Grid class="sapUiSmallMarginTop" position="Center">
-    			<l:content>
-					<ScrollContainer visible="{account>/unauth}">
-						<html:a 
-							href="#" 
-							onclick="navigator.id.request();" 
-							class="persona-button dark">
-							<Text 
-								text="{i18n>pageMaster.footer.btnLogin}"
-								textAlign="Center"/>
-						</html:a>
-					</ScrollContainer>
-				</l:content>
-			</l:Grid>
+		<content>
 			<IconTabBar expanded="{device>/isNoPhone}">
 				<items>
+					<IconTabFilter
+						visible="{account>/unauth}"
+						text="{i18n>pageAccount.tabLogin.title}"
+						tooltip="{i18n>pageAccount.tabLogin.tooltip}"
+						icon="sap-icon://customer">
+            			<core:Fragment fragmentName="de.esconderse.view.fragment.TabLogin" type="XML"/>
+            		</IconTabFilter>
 					<IconTabFilter
 						visible="{account>/auth}"
 						text="{i18n>pageAccount.tabAccount.title}"
