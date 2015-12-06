@@ -5,10 +5,10 @@
 	xmlns="sap.m">
 	<Page
 		id="pageForward"
+		title="{i18n>pageForward.title}"
 		showNavButton="{device>/isPhone}"
 		navButtonPress="onNavBack"
-		class="sapUiFioriObjectPage"
-		title="{i18n>pageForward.title}">
+		class="sapUiFioriObjectPage">
 		<content>
 			<ObjectHeader 
 				title="{description}">
