@@ -4,3 +4,4 @@ model2
 alt
 node_modules/
 .ftppass
+**/.ds_store
